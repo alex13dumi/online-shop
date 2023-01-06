@@ -11,25 +11,33 @@
 
     function UpdateUser()
     {
-        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
-        $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+        try {
 
-        $sql='UPDATE `users` SET `username`=\''.trim($_POST['username_client_nou']).'\' WHERE id='.$_SESSION["id"];
-        if($stmt = $mysqli->prepare($sql))
+            if (empty($_POST['username_client_nou']))
+                throw new Exception('Username can\'t be empty');
+                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
+            $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+            $sql = 'UPDATE `users` SET `username`=\'' . trim($_POST['username_client_nou']) . '\' WHERE id=' . $_SESSION["id"];
+
+            if ($stmt = $mysqli->prepare($sql)) 
+            {
+                if ($stmt->execute()) 
+                {
+                    session_destroy();
+                    header("location: login.php");
+                    exit();
+                } 
+                else 
+                {
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
+                $stmt->close();
+            }
+            $mysqli->close();
+        }catch (Exception $e)
         {
-            if ($stmt->execute())
-            {
-                session_destroy();
-                header("location: login.php");
-                exit();
-            }
-            else
-            {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-            $stmt->close();
+            echo '<br></br> Caught exception: '. $e->getMessage();
         }
-        $mysqli->close();
     }
 
     if(isset($_POST['UpdateUser'])){
@@ -77,3 +85,4 @@
 
 </body>
 </html>
+

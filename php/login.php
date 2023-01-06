@@ -3,7 +3,7 @@
     
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
     {
-        header("location: ../index.html");
+        header("location: welcome.php");
         exit;
     }
     
@@ -65,7 +65,7 @@
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $username;
 
-                                header("location: ../index.html");
+                                header("location: welcome.php");
                             }
                             else
                             {

@@ -87,13 +87,7 @@
 <hr>
 
     <?php
-    function FormatName($name)
-    {
-        $name = trim($name);
-        $name = strtolower($name);
-        $name = ucwords($name);
-        return $name;
-    }
+    require "functions.php";
     function CreateClient()
     {
         global $name, $phone, $email;
@@ -119,35 +113,37 @@
             {
                 throw new Exception('Invalid email format');
             }
-
-            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
-
-            $sql='INSERT INTO `tblClienti` (`numeClient`, `telefonClient`, `emailClient`) VALUES (?,?,?)';
-            $mysqli=new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
-
-            if(!is_null($mysqli))
-            {
-                echo 'Success.....' .$mysqli->host_info;
-                echo '<br></br>';
-                echo 'Connected !\nClient library version: ' .$mysqli->client_info;
-                echo '<br ></br >';
-                echo 'Server' .$mysqli->server_info;
-            }
             else
             {
-                echo "\nCouldn\'t connect to $mysqli->host_info\n";
-            }
+                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
 
-            $stmt=$mysqli->prepare($sql);
-            $stmt->execute([$name,$phone,$email]);
+                $sql='INSERT INTO `tblClienti` (`numeClient`, `telefonClient`, `emailClient`) VALUES (?,?,?)';
+                $mysqli=new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
 
-            if(!$stmt->affected_rows)
-            {
-                throw new Exception('Couldn\'t INSERT into `tblClienti` !');
+                if(!is_null($mysqli))
+                {
+                    echo 'Success.....' .$mysqli->host_info;
+                    echo '<br></br>';
+                    echo 'Connected !\nClient library version: ' .$mysqli->client_info;
+                    echo '<br ></br >';
+                    echo 'Server' .$mysqli->server_info;
+                }
+                else
+                {
+                    echo "\nCouldn\'t connect to $mysqli->host_info\n";
+                }
+
+                $stmt=$mysqli->prepare($sql);
+                $stmt->execute([$name,$phone,$email]);
+
+                if(!$stmt->affected_rows)
+                {
+                    throw new Exception('Couldn\'t INSERT into `tblClienti` !');
+                }
+                echo 'Inserted user: ', $name, ' ', $phone,' ', $email;
+                $stmt->close();
+                $mysqli->close();
             }
-            echo 'Inserted user: ', $name, ' ', $phone,' ', $email;
-            $stmt->close();
-            $mysqli->close();
 
         } catch(Exception $e){
             echo 'Caught exception: ', $e->getMessage(), "\n";

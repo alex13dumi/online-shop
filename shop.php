@@ -344,7 +344,7 @@
                 <?php
                     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
 
-                    $images = array("img/product-1.jpg", "img/product-2.jpg", "img/product-3.jpg", "img/product-4.jpg", "img/product-5.jpg", "img/product-6.jpg", "img/product-7.jpg", "img/product-8.jpg", "img/product-9.jpg");
+                    $images = array("img\hanorac_adidas.jpg", "img\geaca_adidas.jpg", "img\jampiere_nike.jpg", "img\sosete_nike.jpg", "img\bustiera_puma.jpg", "img\ochelari_puma.jpg", "img\adidasi_tenis_underarmour.jpg", "img\shorts_adidas.jpg", "img\ghete_fotbal.jpg","img\tricou_RM_adidas.jpg");
 
                     //`numeClient`=\''.$_POST['search_client'].'\'
                     $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style

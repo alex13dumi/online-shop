@@ -147,7 +147,6 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="index.php" class="nav-item nav-link">Home</a>
                         <a href="shop.php" class="nav-item nav-link active">Shop</a>
-                        <a href="detail.php" class="nav-item nav-link">Shop Detail</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                             <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
@@ -348,7 +347,7 @@
 
                     //`numeClient`=\''.$_POST['search_client'].'\'
                     $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
-                    $sql = 'SELECT `numeArticol`, `pretCurentArticol` FROM tblArticole';
+                    $sql = 'SELECT `idArticol`, `numeArticol`, `pretCurentArticol` FROM tblArticole';
                     if (!is_null($mysqli))
                     {
                         /*echo 'Success.....' . $mysqli->host_info;
@@ -382,7 +381,7 @@
                                                 </div>
                                             </div>
                                             <div class="text-center py-4">
-                                                <a class="h6 text-decoration-none text-truncate" href="">' .$obj->numeArticol. '</a>
+                                                <a class="h6 text-decoration-none text-truncate" href="detail.php?id='.$obj->idArticol.'">' .$obj->numeArticol. '</a>
                                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                                     <h5>' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
                                                 </div>
@@ -440,7 +439,6 @@
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                         <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
@@ -451,7 +449,6 @@
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                         <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                         <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>

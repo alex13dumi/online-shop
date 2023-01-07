@@ -147,7 +147,6 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.html" class="nav-item nav-link active">Home</a>
                             <a href="shop.php" class="nav-item nav-link">Shop</a>
-                            <a href="detail.php" class="nav-item nav-link">Shop Detail</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
@@ -547,66 +546,67 @@
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent Products</span></h2>
         <div class="row px-xl-5">
             <?php
-            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
 
-            $images = array("img/product-1.jpg", "img/product-2.jpg", "img/product-3.jpg", "img/product-4.jpg", "img/product-5.jpg", "img/product-6.jpg", "img/product-7.jpg", "img/product-8.jpg", "img/product-9.jpg");
+                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
 
-            //`numeClient`=\''.$_POST['search_client'].'\'
-            $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
-            $sql = 'SELECT `numeArticol`, `pretCurentArticol` FROM tblArticole';
-            if (!is_null($mysqli))
-            {
-                /*echo 'Success.....' . $mysqli->host_info;
-                echo '<br></br>';
-                echo 'Connected !\nClient library version: ' . $mysqli->client_info;
-                echo '<br ></br >';
-                echo 'Server' . $mysqli->server_info;*/
-            }
-            else
-            {
-                echo "\nCouldn\'t connect to $mysqli->host_info\n";
-            }
-            $result = $mysqli->query($sql);
-            if (!$result->num_rows)
-                throw new Exception('Name or telephone doesn\'t exist');
+                $images = array("img/product-1.jpg", "img/product-2.jpg", "img/product-3.jpg", "img/product-4.jpg", "img/product-5.jpg", "img/product-6.jpg", "img/product-7.jpg", "img/product-8.jpg", "img/product-9.jpg");
 
-            else
-            {
-                $i=0;
-                while ($obj = $result->fetch_object()) {
-                    echo'<div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
-                                <div class="product-img position-relative overflow-hidden">
-                                    <img class="img-fluid w-100" src=\'' . $images[$i] . '\'" alt="">
-                                    <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                //`numeClient`=\''.$_POST['search_client'].'\'
+                $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
+                $sql = 'SELECT `numeArticol`, `pretCurentArticol` FROM tblArticole';
+                if (!is_null($mysqli))
+                {
+                    /*echo 'Success.....' . $mysqli->host_info;
+                    echo '<br></br>';
+                    echo 'Connected !\nClient library version: ' . $mysqli->client_info;
+                    echo '<br ></br >';
+                    echo 'Server' . $mysqli->server_info;*/
+                }
+                else
+                {
+                    echo "\nCouldn\'t connect to $mysqli->host_info\n";
+                }
+                $result = $mysqli->query($sql);
+                if (!$result->num_rows)
+                    throw new Exception('Name or telephone doesn\'t exist');
+
+                else
+                {
+                    $i=0;
+                    while ($obj = $result->fetch_object()) {
+                        echo'<div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                                <div class="product-item bg-light mb-4">
+                                    <div class="product-img position-relative overflow-hidden">
+                                        <img class="img-fluid w-100" src=\'' . $images[$i] . '\'" alt="">
+                                        <div class="product-action">
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="text-center py-4">
-                                    <a class="h6 text-decoration-none text-truncate" href="">' .$obj->numeArticol. '</a>
-                                    <div class="d-flex align-items-center justify-content-center mt-2">
-                                        <h5>' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center mb-1">
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small>(99)</small>
+                                    <div class="text-center py-4">
+                                        <a class="h6 text-decoration-none text-truncate" href="">' .$obj->numeArticol. '</a>
+                                        <div class="d-flex align-items-center justify-content-center mt-2">
+                                            <h5>' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-center mb-1">
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small>(99)</small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        ';
-                    $i++;
+                            ';
+                        $i++;
+                    }
                 }
-            }
-            $result->close();
-            $mysqli->close();
+                $result->close();
+                $mysqli->close();
             ?>
                 </div>
             </div>
@@ -668,7 +668,6 @@
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                             <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
@@ -679,7 +678,6 @@
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
                             <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                             <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>

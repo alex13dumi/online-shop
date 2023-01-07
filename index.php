@@ -29,53 +29,6 @@
 <body>
     <!-- Topbar Start -->
     <div class="container-fluid">
-        <div class="row bg-secondary py-1 px-xl-5">
-            <div class="col-lg-6 d-none d-lg-block">
-                <div class="d-inline-flex align-items-center h-100">
-                    <a class="text-body mr-3" href="">About</a>
-                    <a class="text-body mr-3" href="">Contact</a>
-                    <a class="text-body mr-3" href="">Help</a>
-                    <a class="text-body mr-3" href="">FAQs</a>
-                </div>
-            </div>
-            <div class="col-lg-6 text-center text-lg-right">
-                <div class="d-inline-flex align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button href="php/login.php" class="dropdown-item" type="button">Sign in</button>
-                            <button href="php/register.php" class="dropdown-item" type="button">Sign up</button>
-                        </div>
-                    </div>
-                    <div class="btn-group mx-2">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">EUR</button>
-                            <button class="dropdown-item" type="button">GBP</button>
-                            <button class="dropdown-item" type="button">CAD</button>
-                        </div>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">FR</button>
-                            <button class="dropdown-item" type="button">AR</button>
-                            <button class="dropdown-item" type="button">RU</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="d-inline-flex align-items-center d-block d-lg-none">
-                    <a href="" class="btn px-0 ml-2">
-                        <i class="fas fa-heart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-                    </a>
-                    <a href="" class="btn px-0 ml-2">
-                        <i class="fas fa-shopping-cart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
-                    </a>
-                </div>
-            </div>
-        </div>
         <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
             <div class="col-lg-4">
                 <a href="" class="text-decoration-none">
@@ -145,7 +98,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
+                            <a href="index.php" class="nav-item nav-link active">Home</a>
                             <a href="shop.php" class="nav-item nav-link">Shop</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
@@ -155,7 +108,6 @@
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
-
                             <a href="php/register.php" class="nav-item nav-link">New Account</a>
                             <a href="php/bd.php" class="nav-item nav-link">Search order</a>
                             <a href="php/welcome.php" class="nav-item nav-link">My account</a>
@@ -449,11 +401,11 @@
             <?php
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
 
-                $images = array("img/product-1.jpg", "img/product-2.jpg", "img/product-3.jpg", "img/product-4.jpg", "img/product-5.jpg", "img/product-6.jpg", "img/product-7.jpg", "img/product-8.jpg", "img/product-9.jpg");
+                $images = array("img/product-1.jpg", "img/product-2.jpg", "img/product-3.jpg", "img/product-4.jpg", "img/product-5.jpg", "img/product-6.jpg", "img/product-7.jpg", "img/product-8.jpg", "img/product-9.jpg", "img/product-10.jpg");
 
                 //`numeClient`=\''.$_POST['search_client'].'\'
                 $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
-                $sql = 'SELECT `numeArticol`, `pretCurentArticol` FROM tblArticole';
+                $sql = 'SELECT `idArticol`, `numeArticol`, `pretCurentArticol` FROM tblArticole';
                 if (!is_null($mysqli))
                 {
                     /*echo 'Success.....' . $mysqli->host_info;
@@ -471,42 +423,42 @@
                     throw new Exception('Name or telephone doesn\'t exist');
 
                 else
-                {
-                    $i=0;
-                    while ($obj = $result->fetch_object()) {
-                        echo'<div class="col-lg-3 col-md-4 col-sm-6 pb-1">
-                            <div class="product-item bg-light mb-4">
-                                <div class="product-img position-relative overflow-hidden">
-                                    <img class="img-fluid w-100" src=\'' . $images[$i] . '\'" alt="">
-                                    <div class="product-action">
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
-                                        <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                    {
+                        $i=0;
+                        while ($obj = $result->fetch_object()) {
+                            echo'<div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+                                <div class="product-item bg-light mb-4">
+                                    <div class="product-img position-relative overflow-hidden">
+                                        <img class="img-fluid w-100" src=\'' . $images[$i] . '\'" alt="">
+                                        <div class="product-action">
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-sync-alt"></i></a>
+                                            <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-search"></i></a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="text-center py-4">
-                                    <a class="h6 text-decoration-none text-truncate" href="">' .$obj->numeArticol. '</a>
-                                    <div class="d-flex align-items-center justify-content-center mt-2">
-                                        <h5>' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-center mb-1">
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small class="fa fa-star text-primary mr-1"></small>
-                                        <small>(99)</small>
+                                    <div class="text-center py-4">
+                                        <a class="h6 text-decoration-none text-truncate" href="detail.php?id='.$obj->idArticol.'">' .$obj->numeArticol. '</a>
+                                        <div class="d-flex align-items-center justify-content-center mt-2">
+                                            <h5>' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-center mb-1">
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small class="fa fa-star text-primary mr-1"></small>
+                                            <small>(99)</small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        ';
-                $i++;
+                            ';
+                    $i++;
+                }
             }
-        }
-        $result->close();
-        $mysqli->close();
+            $result->close();
+            $mysqli->close();
         ?>
         </div>
     </div>
@@ -542,25 +494,25 @@
 
 
     <!-- Products Start -->
-    <div class="container-fluid pt-5 pb-3">
+    <!--<div class="container-fluid pt-5 pb-3">
         <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Recent Products</span></h2>
-        <div class="row px-xl-5">
+        <div class="row px-xl-5"> -->
             <?php
-
+            /*
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
 
                 $images = array("img/product-1.jpg", "img/product-2.jpg", "img/product-3.jpg", "img/product-4.jpg", "img/product-5.jpg", "img/product-6.jpg", "img/product-7.jpg", "img/product-8.jpg", "img/product-9.jpg");
 
-                //`numeClient`=\''.$_POST['search_client'].'\'
+                `numeClient`=\''.$_POST['search_client'].'\'
                 $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
                 $sql = 'SELECT `numeArticol`, `pretCurentArticol` FROM tblArticole';
                 if (!is_null($mysqli))
                 {
-                    /*echo 'Success.....' . $mysqli->host_info;
+                    echo 'Success.....' . $mysqli->host_info;
                     echo '<br></br>';
                     echo 'Connected !\nClient library version: ' . $mysqli->client_info;
                     echo '<br ></br >';
-                    echo 'Server' . $mysqli->server_info;*/
+                    echo 'Server' . $mysqli->server_info;
                 }
                 else
                 {
@@ -606,13 +558,13 @@
                     }
                 }
                 $result->close();
-                $mysqli->close();
+                $mysqli->close();*/
             ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Products End -->
+    <!--</div>
+</div>
+</div>
+</div>-->
+<!-- Products End -->
 
 
     <!-- Vendor Start -->

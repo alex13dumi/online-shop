@@ -80,7 +80,7 @@
 
         if(empty($username_err) && empty($password_err) && empty($confirm_password_err))
         {
-            $sql = "INSERT INTO `users` (`username`, `password`) VALUES (?, ?)";
+            $sql = "INSERT INTO `users` (`username`, `password`, `client_code`) VALUES (?, ?, 0)";
 
             if($stmt = $mysqli->prepare($sql))
             {

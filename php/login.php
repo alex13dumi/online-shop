@@ -1,24 +1,24 @@
 <?php
     session_start();
-    
+
     if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
     {
         header("location: ../index.php");
         exit;
     }
-    
+
     require_once "config.php";
 
     $mysqli = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-    
+
     if($mysqli === false)
     {
         die("ERROR: Could not connect. " . mysqli_connect_error());
     }
-    
+
     $username = $password = "";
     $usernameErr = $passwordErr = $loginErr = "";
-    
+
     if($_SERVER["REQUEST_METHOD"] == "POST")
     {
         if(empty(trim($_POST["username"])))
@@ -65,7 +65,12 @@
                                 $_SESSION["id"] = $id;
                                 $_SESSION["username"] = $username;
 
+                                $sql="UPDATE `users` SET `client_code`='.$id.' WHERE `username`='.$username.'";
+                                echo $sql;
+                                $result = $mysqli->query($sql);
+                                printf("Select returned %d rows.\n", $result->num_rows);
                                 header("location: ../index.php");
+
                             }
                             else
                             {

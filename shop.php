@@ -147,7 +147,7 @@
                     <div class="navbar-nav mr-auto py-0">
                         <a href="index.html" class="nav-item nav-link">Home</a>
                         <a href="shop.php" class="nav-item nav-link active">Shop</a>
-                        <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                        <a href="detail.php" class="nav-item nav-link">Shop Detail</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                             <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
@@ -344,7 +344,7 @@
                 <?php
                     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
 
-                    $images = array("img/p-1.jpg", "img/p-2.jpg", "img/p-3.jpg", "img/p-4.jpg", "img/p-5.jpg", "img/p-6.jpg", "img/p-7.jpg", "img/p-8.jpg", "img/p-9.jpg");
+                    $images = array("img/product-1.jpg", "img/product-2.jpg", "img/product-3.jpg", "img/product-4.jpg", "img/product-5.jpg", "img/product-6.jpg", "img/product-7.jpg", "img/product-8.jpg", "img/product-9.jpg");
 
                     //`numeClient`=\''.$_POST['search_client'].'\'
                     $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
@@ -382,9 +382,9 @@
                                                 </div>
                                             </div>
                                             <div class="text-center py-4">
-                                                <a class="h6 text-decoration-none text-truncate" href="">'.$obj->numeArticol.'</a>
+                                                <a class="h6 text-decoration-none text-truncate" href="">' .$obj->numeArticol. '</a>
                                                 <div class="d-flex align-items-center justify-content-center mt-2">
-                                                    <h5>'.$obj->pretCurentArticol.'</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
+                                                    <h5>' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
                                                 </div>
                                                 <div class="d-flex align-items-center justify-content-center mb-1">
                                                     <small class="fa fa-star text-primary mr-1"></small>

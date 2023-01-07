@@ -242,6 +242,7 @@
                         $i++;
                     }
                 }
+                $result->close();
                 $mysqli->close();
             } catch (Exception $e) {
                 echo '<br></br>';

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,9 +40,11 @@
                 </a>
             </div>
             <div class="col-lg-4 col-6 text-left">
-                <form action="">
+                <form action="shop.php">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <?php
+                            echo '<input type="text" class="form-control" name="productName" placeholder="Search for products">';
+                        ?>
                         <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -104,13 +109,29 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
+                                    <a href="checkout.php" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
-                            <a href="php/register.php" class="nav-item nav-link">New Account</a>
-                            <a href="php/bd.php" class="nav-item nav-link">Search order</a>
-                            <a href="php/welcome.php" class="nav-item nav-link">My account</a>
+                            <!-- <a href="php/bd.php" class="nav-item nav-link">Search order</a> -->
+                            <?php
+                                if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+                                {
+                                    echo '<a href="php/register.php" class="nav-item nav-link">Register</a>';
+                                    echo '<a href="php/login.php" class="nav-item nav-link">Sign In</a>';
+                                }
+                                else
+                                {
+                                    echo '<div class="nav-item dropdown">
+                                            <a class="nav-item nav-link dropdown-toggle" data-toggle="dropdown">My account <i class="fa fa-angle-down mt-1"></i></a>
+                                                <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
+                                                    <a href="php/welcome.php" class="dropdown-item">Profile</a>
+                                                    <a href="php/logout.php" class="dropdown-item">Sign Out</a>
+                                                </div>
+                                          </div>
+                                          ';
+                                }
+                            ?>
                         </div>
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="" class="btn px-0">

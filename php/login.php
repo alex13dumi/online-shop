@@ -163,9 +163,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                                     </div>
                                     <div class="form-group">
                                         <input type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" value="Login">
+                                        <input type="reset" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" value="Reset">
                                     </div>
                                 </form>
-                                <p>Don't have an account? <a href="register.php" class="btn btn-outline-danger">Sign up now</a>.</p>
+                                <p>Don't have an account? <a href="register.php" class="btn btn-outline-danger">Sign up</a></p>
                             </div>
                         </div>
                         <div class="col-lg-6 d-flex align-items-center gradient-custom-2">

@@ -113,40 +113,89 @@
         <title>Sign Up</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
-            body{ font: 14px sans-serif; }
-            .wrapper{ width: 360px; padding: 20px; }
+            .gradient-custom-2 {
+                /* fallback for old browsers */
+                background: #fccb90;
+                /* Chrome 10-25, Safari 5.1-6 */
+                background: -webkit-linear-gradient(to right, #ffae00, #ff9100, #ffb700, #ff8800);
+                /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                background: linear-gradient(to right, #be7200, #ffae00, #ffb700, #ec8600);
+            }
+
+            @media (min-width: 768px) {
+                .gradient-form {
+                    height: 100vh !important;
+                }
+            }
+            @media (min-width: 769px) {
+                .gradient-custom-2 {
+                    border-top-right-radius: .3rem;
+                    border-bottom-right-radius: .3rem;
+                }
+            }
         </style>
     </head>
     <body>
-    <center>
-	    <div class="wrapper">
-		<h2>Sign Up</h2>
-		<p>Please fill this form to create an account.</p>
-		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-		    <div class="form-group">
-		        <label>Username</label>
-		        <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-		        <span class="invalid-feedback"><?php echo $username_err; ?></span>
-		    </div>
-		    <div class="form-group">
-		        <label>Password</label>
-		        <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-		        <span class="invalid-feedback"><?php echo $password_err; ?></span>
-		    </div>
-		    <div class="form-group">
-		        <label>Confirm Password</label>
-		        <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-		        <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-		    </div>
-		    <div class="form-group">
-		        <input type="submit" class="btn btn-primary" value="Submit">
-		        <input type="reset" class="btn btn-secondary ml-2" value="Reset">
-		    </div>
-		    <p>Already have an account? <a href="login.php">Login here</a>.</p>
-		</form>
-	     </div>
-        </center>
+    <section class="h-100 gradient-form" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-xl-10">
+                    <div class="card rounded-3 text-black">
+                        <div class="row g-0">
+                            <div class="col-lg-6">
+                                <div class="card-body p-md-5 mx-md-4">
+                                    <div class="text-center">
+                                        <img src="../img/sports-wear.png"
+                                             style="width: 320px;" alt="logo">
+                                            <h4 class="mt-1 mb-5 pb-1">We are The Sports Team</h4>
+                                    </div>
 
-    </body>
+                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                        <div class="form-outline mb-4">
+                                            <label>Username</label>
+                                            <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                                            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label>Password</label>
+                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                                            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label>Confirm Password</label>
+                                            <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                                            <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" value="Submit">
+                                            <input type="reset" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" value="Reset">
+                                        </div>
+
+                                    </form>
+                                <p>Already have an account? <a href="login.php">Login here</a>.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                                <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                    <h4 class="mb-4">We are more than just a company</h4>
+                                    <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+</div>
+</section>
+</body>
 </html>
 

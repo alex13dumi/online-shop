@@ -137,7 +137,7 @@
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Articole barbati</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">“The only one who can tell you ‘you can’t win’ is you and you don’t have to listen.”—Jessica Ennis-Hill </p>
                                     <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Cumpara acum</a>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Articole femei</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">“I’d rather regret the risks that didn’t work out than the chances I didn’t take at all.” —Simone Biles</p>
                                     <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Cumpara acum</a>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Articole copii</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Lorem rebum magna amet lorem magna erat diam stet. Sadips duo stet amet amet ndiam elitr ipsum diam</p>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">“The only way to prove that you’re a good sport is to lose.” —Ernie Banks</p>
                                     <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Cumpara acum</a>
                                 </div>
                             </div>
@@ -169,17 +169,17 @@
                 <div class="product-offer mb-30" style="height: 200px;">
                     <img class="img-fluid" src="img/offer-1.jpg" alt="">
                     <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Salveaza 20%</h6>
+                        <h6 class="text-white text-uppercase">Salvati 20%</h6>
                         <h3 class="text-white mb-3">Oferta speciala</h3>
-                        <a href="" class="btn btn-primary">Cumapara acum</a>
+                        <a href="" class="btn btn-primary">Cumparati acum</a>
                     </div>
                 </div>
                 <div class="product-offer mb-30" style="height: 200px;">
                     <img class="img-fluid" src="img/offer-2.jpg" alt="">
                     <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Salveaza 20%</h6>
+                        <h6 class="text-white text-uppercase">Salvati 20%</h6>
                         <h3 class="text-white mb-3">Oferta speciala</h3>
-                        <a href="" class="btn btn-primary">Cumapara acum</a>
+                        <a href="" class="btn btn-primary">Cumparati acum</a>
                     </div>
                 </div>
             </div>
@@ -194,25 +194,25 @@
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
                     <h1 class="fa fa-check text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Quality Product</h5>
+                    <h5 class="font-weight-semi-bold m-0">Calitatea produsului</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
                     <h1 class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
-                    <h5 class="font-weight-semi-bold m-0">Free Shipping</h5>
+                    <h5 class="font-weight-semi-bold m-0">Livrare gratuita</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
                     <h1 class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">14-Day Return</h5>
+                    <h5 class="font-weight-semi-bold m-0">14 zile timp de retur</h5>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="d-flex align-items-center bg-light mb-4" style="padding: 30px;">
                     <h1 class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
-                    <h5 class="font-weight-semi-bold m-0">24/7 Support</h5>
+                    <h5 class="font-weight-semi-bold m-0">24/7 suport</h5>
                 </div>
             </div>
         </div>
@@ -222,7 +222,7 @@
 
     <!-- Categories Start -->
     <div class="container-fluid pt-5">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Categories</span></h2>
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Categorii</span></h2>
         <div class="row px-xl-5 pb-3">
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <a class="text-decoration-none" href="">
@@ -231,8 +231,8 @@
                             <img class="img-fluid" src="img/cat-1.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -244,8 +244,8 @@
                             <img class="img-fluid" src="img/cat-2.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -257,8 +257,8 @@
                             <img class="img-fluid" src="img/cat-3.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -270,8 +270,8 @@
                             <img class="img-fluid" src="img/cat-4.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -283,8 +283,8 @@
                             <img class="img-fluid" src="img/cat-4.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -296,8 +296,8 @@
                             <img class="img-fluid" src="img/cat-3.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -309,8 +309,8 @@
                             <img class="img-fluid" src="img/cat-2.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -322,8 +322,8 @@
                             <img class="img-fluid" src="img/cat-1.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -335,8 +335,8 @@
                             <img class="img-fluid" src="img/cat-2.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -348,8 +348,8 @@
                             <img class="img-fluid" src="img/cat-1.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -361,8 +361,8 @@
                             <img class="img-fluid" src="img/cat-4.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -374,8 +374,8 @@
                             <img class="img-fluid" src="img/cat-3.jpg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Category Name</h6>
-                            <small class="text-body">100 Products</small>
+                            <h6>Numele categoriei</h6>
+                            <small class="text-body">100 produse</small>
                         </div>
                     </div>
                 </a>
@@ -463,9 +463,9 @@
                 <div class="product-offer mb-30" style="height: 300px;">
                     <img class="img-fluid" src="img/offer-1.jpg" alt="">
                     <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Save 20%</h6>
-                        <h3 class="text-white mb-3">Special Offer</h3>
-                        <a href="" class="btn btn-primary">Shop Now</a>
+                        <h6 class="text-white text-uppercase">Salvati 20%</h6>
+                        <h3 class="text-white mb-3">Oferta speciala</h3>
+                        <a href="" class="btn btn-primary">Cumparati acum</a>
                     </div>
                 </div>
             </div>
@@ -473,9 +473,9 @@
                 <div class="product-offer mb-30" style="height: 300px;">
                     <img class="img-fluid" src="img/offer-2.jpg" alt="">
                     <div class="offer-text">
-                        <h6 class="text-white text-uppercase">Save 20%</h6>
-                        <h3 class="text-white mb-3">Special Offer</h3>
-                        <a href="" class="btn btn-primary">Shop Now</a>
+                        <h6 class="text-white text-uppercase">Salvati 20%</h6>
+                        <h3 class="text-white mb-3">Oferta speciala</h3>
+                        <a href="" class="btn btn-primary">Cumparati acum</a>
                     </div>
                 </div>
             </div>

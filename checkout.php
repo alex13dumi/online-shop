@@ -151,7 +151,7 @@
                                 <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item active">Checkout</a>
+                                    <a href="checkout.php" class="dropdown-item active">Checkout</a>
                                 </div>
                             </div>
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -217,10 +217,6 @@
                             <input class="form-control" type="text" placeholder="123 Street">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Address Line 2</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <div class="col-md-6 form-group">
                             <label>Country</label>
                             <select class="custom-select">
                                 <option selected>United States</option>
@@ -237,20 +233,16 @@
                             <label>State</label>
                             <input class="form-control" type="text" placeholder="New York">
                         </div>
-                        <div class="col-md-6 form-group">
-                            <label>ZIP Code</label>
-                            <input class="form-control" type="text" placeholder="123">
-                        </div>
                         <div class="col-md-12 form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="newaccount">
-                                <label class="custom-control-label" for="newaccount">Create an account</label>
+                                <label class="custom-control-label" for="newaccount" href="">Create an account</label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="shipto">
-                                <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
+                                <label class="custom-control-label" for="shipto" data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
                             </div>
                         </div>
                     </div>
@@ -284,25 +276,12 @@
                                 <input class="form-control" type="text" placeholder="123 Street">
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Country</label>
-                                <select class="custom-select">
-                                    <option selected>United States</option>
-                                    <option>Afghanistan</option>
-                                    <option>Albania</option>
-                                    <option>Algeria</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 form-group">
                                 <label>City</label>
                                 <input class="form-control" type="text" placeholder="New York">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label>State</label>
                                 <input class="form-control" type="text" placeholder="New York">
-                            </div>
-                            <div class="col-md-6 form-group">
-                                <label>ZIP Code</label>
-                                <input class="form-control" type="text" placeholder="123">
                             </div>
                         </div>
                     </div>

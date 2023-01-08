@@ -30,41 +30,7 @@
 <!-- Topbar Start -->
 <div class="container-fluid">
     <div class="row bg-secondary py-1 px-xl-5">
-        <div class="col-lg-6 d-none d-lg-block">
-            <div class="d-inline-flex align-items-center h-100">
-                <a class="text-body mr-3" href="">About</a>
-                <a class="text-body mr-3" href="">Contact</a>
-                <a class="text-body mr-3" href="">Help</a>
-                <a class="text-body mr-3" href="">FAQs</a>
-            </div>
-        </div>
-        <div class="col-lg-6 text-center text-lg-right">
-            <div class="d-inline-flex align-items-center">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button">Sign in</button>
-                        <button class="dropdown-item" type="button">Sign up</button>
-                    </div>
-                </div>
-                <div class="btn-group mx-2">
-                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button">EUR</button>
-                        <button class="dropdown-item" type="button">GBP</button>
-                        <button class="dropdown-item" type="button">CAD</button>
-                    </div>
-                </div>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <button class="dropdown-item" type="button">FR</button>
-                        <button class="dropdown-item" type="button">AR</button>
-                        <button class="dropdown-item" type="button">RU</button>
-                    </div>
-                </div>
-            </div>
-            <div class="d-inline-flex align-items-center d-block d-lg-none">
+        <div class="d-inline-flex align-items-center d-block d-lg-none">
                 <a href="" class="btn px-0 ml-2">
                     <i class="fas fa-heart text-dark"></i>
                     <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
@@ -79,8 +45,8 @@
     <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
         <div class="col-lg-4">
             <a href="" class="text-decoration-none">
-                <span class="h1 text-uppercase text-primary bg-dark px-2">Multi</span>
-                <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
+                <span class="h1 text-uppercase text-dark bg-dark px-2">Sports</span>
+                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Wear</span>
             </a>
         </div>
         <div class="col-lg-4 col-6 text-left">
@@ -96,8 +62,8 @@
             </form>
         </div>
         <div class="col-lg-4 col-6 text-right">
-            <p class="m-0">Customer Service</p>
-            <h5 class="m-0">+012 345 6789</h5>
+            <p class="m-0">Servicii clienti</p>
+            <h5 class="m-0">0729 993 729</h5>
         </div>
     </div>
 </div>
@@ -109,47 +75,37 @@
     <div class="row px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categories</h6>
+                <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categorii</h6>
                 <i class="fa fa-angle-down text-dark"></i>
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                 <div class="navbar-nav w-100">
-                    <div class="nav-item dropdown dropright">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dresses <i class="fa fa-angle-right float-right mt-1"></i></a>
-                        <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
-                            <a href="" class="dropdown-item">Men's Dresses</a>
-                            <a href="" class="dropdown-item">Women's Dresses</a>
-                            <a href="" class="dropdown-item">Baby's Dresses</a>
-                        </div>
-                    </div>
-                    <a href="" class="nav-item nav-link">Shirts</a>
-                    <a href="" class="nav-item nav-link">Jeans</a>
-                    <a href="" class="nav-item nav-link">Swimwear</a>
-                    <a href="" class="nav-item nav-link">Sleepwear</a>
-                    <a href="" class="nav-item nav-link">Sportswear</a>
-                    <a href="" class="nav-item nav-link">Jumpsuits</a>
-                    <a href="" class="nav-item nav-link">Blazers</a>
-                    <a href="" class="nav-item nav-link">Jackets</a>
-                    <a href="" class="nav-item nav-link">Shoes</a>
+                    <a href="" class="nav-item nav-link">Tricouri</a>
+                    <a href="" class="nav-item nav-link">Pantaloni</a>
+                    <a href="" class="nav-item nav-link">Echipament inot</a>
+                    <a href="" class="nav-item nav-link">Bustiere</a>
+                    <a href="" class="nav-item nav-link">Pantofi sport</a>
+                    <a href="" class="nav-item nav-link">Jachete</a>
+                    <a href="" class="nav-item nav-link">Hanorace</a>
+                    <a href="" class="nav-item nav-link">Sosete</a>
                 </div>
             </nav>
         </div>
         <div class="col-lg-9">
             <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0 px-0">
-                <a href="" class="text-decoration-none d-block d-lg-none">
-                    <span class="h1 text-uppercase text-dark bg-light px-2">Multi</span>
-                    <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Shop</span>
+                <a href="index.php" class="text-decoration-none d-block d-lg-none">
+                    <span class="h1 text-uppercase text-dark bg-light px-2">Sports</span>
+                    <span class="h1 text-uppercase text-light bg-primary px-2 ml-n1">Wear</span>
                 </a>
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav mr-auto py-0">
-                        <a href="index.php" class="nav-item nav-link">Home</a>
-                        <a href="shop.php" class="nav-item nav-link active">Shop</a>
-                        <a href="detail.php" class="nav-item nav-link">Shop Detail</a>
+                        <a href="index.php" class="nav-item nav-link">Acasa</a>
+                        <a href="shop.php" class="nav-item nav-link active">Magazin</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pagini <i class="fa fa-angle-down mt-1"></i></a>
                             <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                 <a href="cart.html" class="dropdown-item">Shopping Cart</a>
                                 <a href="checkout.html" class="dropdown-item">Checkout</a>
@@ -180,8 +136,8 @@
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="#">Home</a>
-                <a class="breadcrumb-item text-dark" href="#">Shop</a>
+                <a class="breadcrumb-item text-dark" href="index.php">Home</a>
+                <a class="breadcrumb-item text-dark" href="shop.php">Shop</a>
                 <span class="breadcrumb-item active">Shop List</span>
             </nav>
         </div>
@@ -196,37 +152,37 @@
         <!-- Shop Sidebar Start -->
         <div class="col-lg-3 col-md-4">
             <!-- Price Start -->
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filtrare dupa pret</span></h5>
             <div class="bg-light p-4 mb-30">
                 <form>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="price-all">
-                        <label class="custom-control-label" for="price-all">All Price</label>
+                        <label class="custom-control-label" for="price-all">Pret</label>
                         <span class="badge border font-weight-normal">1000</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-1">
-                        <label class="custom-control-label" for="price-1">$0 - $100</label>
+                        <label class="custom-control-label" for="price-1">0 - 100 RON</label>
                         <span class="badge border font-weight-normal">150</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-2">
-                        <label class="custom-control-label" for="price-2">$100 - $200</label>
+                        <label class="custom-control-label" for="price-2">100 - 200 RON</label>
                         <span class="badge border font-weight-normal">295</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-3">
-                        <label class="custom-control-label" for="price-3">$200 - $300</label>
+                        <label class="custom-control-label" for="price-3">200 - 300 RON</label>
                         <span class="badge border font-weight-normal">246</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="price-4">
-                        <label class="custom-control-label" for="price-4">$300 - $400</label>
+                        <label class="custom-control-label" for="price-4">300 - 400 RON</label>
                         <span class="badge border font-weight-normal">145</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                         <input type="checkbox" class="custom-control-input" id="price-5">
-                        <label class="custom-control-label" for="price-5">$400 - $500</label>
+                        <label class="custom-control-label" for="price-5">400 - 500 RON</label>
                         <span class="badge border font-weight-normal">168</span>
                     </div>
                 </form>
@@ -234,37 +190,37 @@
             <!-- Price End -->
 
             <!-- Color Start -->
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span></h5>
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filtrare dupa culoare</span></h5>
             <div class="bg-light p-4 mb-30">
                 <form>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" checked id="color-all">
-                        <label class="custom-control-label" for="price-all">All Color</label>
+                        <label class="custom-control-label" for="price-all">Toate culorile</label>
                         <span class="badge border font-weight-normal">1000</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-1">
-                        <label class="custom-control-label" for="color-1">Black</label>
+                        <label class="custom-control-label" for="color-1">Negru</label>
                         <span class="badge border font-weight-normal">150</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-2">
-                        <label class="custom-control-label" for="color-2">White</label>
+                        <label class="custom-control-label" for="color-2">Alb</label>
                         <span class="badge border font-weight-normal">295</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-3">
-                        <label class="custom-control-label" for="color-3">Red</label>
+                        <label class="custom-control-label" for="color-3">Rosu</label>
                         <span class="badge border font-weight-normal">246</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
                         <input type="checkbox" class="custom-control-input" id="color-4">
-                        <label class="custom-control-label" for="color-4">Blue</label>
+                        <label class="custom-control-label" for="color-4">Albastru</label>
                         <span class="badge border font-weight-normal">145</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
                         <input type="checkbox" class="custom-control-input" id="color-5">
-                        <label class="custom-control-label" for="color-5">Green</label>
+                        <label class="custom-control-label" for="color-5">Verde</label>
                         <span class="badge border font-weight-normal">168</span>
                     </div>
                 </form>
@@ -272,42 +228,6 @@
             <!-- Color End -->
 
             <!-- Size Start -->
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by size</span></h5>
-            <div class="bg-light p-4 mb-30">
-                <form>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="size-all">
-                        <label class="custom-control-label" for="size-all">All Size</label>
-                        <span class="badge border font-weight-normal">1000</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-1">
-                        <label class="custom-control-label" for="size-1">XS</label>
-                        <span class="badge border font-weight-normal">150</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-2">
-                        <label class="custom-control-label" for="size-2">S</label>
-                        <span class="badge border font-weight-normal">295</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-3">
-                        <label class="custom-control-label" for="size-3">M</label>
-                        <span class="badge border font-weight-normal">246</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-4">
-                        <label class="custom-control-label" for="size-4">L</label>
-                        <span class="badge border font-weight-normal">145</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="size-5">
-                        <label class="custom-control-label" for="size-5">XL</label>
-                        <span class="badge border font-weight-normal">168</span>
-                    </div>
-                </form>
-            </div>
-            <!-- Size End -->
         </div>
         <!-- Shop Sidebar End -->
 
@@ -344,11 +264,11 @@
                 <?php
                     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
 
-                    $images = array("img\hanorac_adidas.jpg", "img\geaca_adidas.jpg", "img\jampiere_nike.jpg", "img\sosete_nike.jpg", "img\bustiera_puma.jpg", "img\ochelari_puma.jpg", "img\adidasi_tenis_underarmour.jpg", "img\shorts_adidas.jpg", "img\ghete_fotbal.jpg","img\tricou_RM_adidas.jpg");
+                    $images = array("img/product-1.jpg", "img/product-2.jpg", "img/product-3.jpg", "img/product-4.jpg", "img/product-5.jpg", "img/product-6.jpg", "img/product-7.jpg", "img/product-8.jpg", "img/product-9.jpg", "img/product-10.jpg");
 
                     //`numeClient`=\''.$_POST['search_client'].'\'
-                    $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
-                    $sql = 'SELECT `numeArticol`, `pretCurentArticol` FROM tblArticole';
+                    $mysqli = new mysqli('localhost', 'root', '', 'magartsportivedb'); //OOP Style
+                    $sql = 'SELECT `idArticol`, `numeArticol`, `pretCurentArticol` FROM tblArticole';
                     if (!is_null($mysqli))
                     {
                         /*echo 'Success.....' . $mysqli->host_info;
@@ -382,7 +302,7 @@
                                                 </div>
                                             </div>
                                             <div class="text-center py-4">
-                                                <a class="h6 text-decoration-none text-truncate" href="">' .$obj->numeArticol. '</a>
+                                                <a class="h6 text-decoration-none text-truncate" href="detail.php?id='.$obj->idArticol.'">' .$obj->numeArticol. '</a>
                                                 <div class="d-flex align-items-center justify-content-center mt-2">
                                                     <h5>' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
                                                 </div>
@@ -407,11 +327,11 @@
                 <div class="col-12">
                     <nav>
                         <ul class="pagination justify-content-center">
-                            <li class="page-item disabled"><a class="page-link" href="#">Previous</span></a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#">Anterior</span></a></li>
                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Urmator</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -423,76 +343,72 @@
 <!-- Shop End -->
 
 
-<!-- Footer Start -->
-<div class="container-fluid bg-dark text-secondary mt-5 pt-5">
-    <div class="row px-xl-5 pt-5">
-        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-            <h5 class="text-secondary text-uppercase mb-4">Get In Touch</h5>
-            <p class="mb-4">No dolore ipsum accusam no lorem. Invidunt sed clita kasd clita et et dolor sed dolor. Rebum tempor no vero est magna amet no</p>
-            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Street, New York, USA</p>
-            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>info@example.com</p>
-            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 67890</p>
-        </div>
-        <div class="col-lg-8 col-md-12">
-            <div class="row">
-                <div class="col-md-4 mb-5">
-                    <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                        <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <h5 class="text-secondary text-uppercase mb-4">My Account</h5>
-                    <div class="d-flex flex-column justify-content-start">
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                        <a class="text-secondary" href="#"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-5">
-                    <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
-                    <p>Duo stet tempor ipsum sit amet magna ipsum tempor est</p>
-                    <form action="">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Your Email Address">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary">Sign Up</button>
-                            </div>
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+        <div class="row px-xl-5 pt-5">
+            <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+                <h5 class="text-secondary text-uppercase mb-4">Cum ne contactati</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>bd. Iuliu Maniu 1-3 Bucuresti</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>office@sportswear.ro</p>
+                <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>0729 993 729</p>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-secondary text-uppercase mb-4">Magazin rapid</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Acasa</a>
+                            <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Magazinul nostru</a>
+                            <a class="text-secondary mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Cosul de cumparaturi</a>
+                            <a class="text-secondary mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-secondary" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contactati-ne</a>
                         </div>
-                    </form>
-                    <h6 class="text-secondary text-uppercase mt-4 mb-3">Follow Us</h6>
-                    <div class="d-flex">
-                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-secondary text-uppercase mb-4">Contul meu</h5>
+                        <div class="d-flex flex-column justify-content-start">
+                            <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Acasa</a>
+                            <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Magazinul nostru</a>
+                            <a class="text-secondary mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Cosul de cumparaturi</a>
+                            <a class="text-secondary mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-secondary" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contactati-ne</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-5">
+                        <h5 class="text-secondary text-uppercase mb-4">Newsletter</h5>
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Adresa Email">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary">Abonare</button>
+                                </div>
+                            </div>
+                        </form>
+                        <h6 class="text-secondary text-uppercase mt-4 mb-3">Social Media</h6>
+                        <div class="d-flex">
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
-        <div class="col-md-6 px-xl-0">
-            <p class="mb-md-0 text-center text-md-left text-secondary">
-                &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Designed
-                by
-                <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
-            </p>
+        <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+            <div class="col-md-6 px-xl-0">
+                <p class="mb-md-0 text-center text-md-left text-secondary">
+                    &copy; <a class="text-primary" href="#">Domain</a>. All Rights Reserved. Designed
+                    by
+                    <a class="text-primary" href="https://htmlcodex.com">HTML Codex</a>
+                </p>
+            </div>
+            <div class="col-md-6 px-xl-0 text-center text-md-right">
+                <img class="img-fluid" src="img/payments.png" alt="">
+            </div>
         </div>
-        <div class="col-md-6 px-xl-0 text-center text-md-right">
-            <img class="img-fluid" src="img/payments.png" alt="">
-        </div>
     </div>
-</div>
-<!-- Footer End -->
+    <!-- Footer End -->
 
 
 <!-- Back to Top -->

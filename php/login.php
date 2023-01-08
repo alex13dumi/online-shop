@@ -1,97 +1,94 @@
-<?php
-session_start();
+ <?php
+    session_start();
 
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
-{
-    header("location: ../index.php");
-    exit;
-}
-
-require_once "config.php";
-
-$mysqli = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-if($mysqli === false)
-{
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
-
-$username = $password = "";
-$usernameErr = $passwordErr = $loginErr = "";
-
-if($_SERVER["REQUEST_METHOD"] == "POST")
-{
-    if(empty(trim($_POST["username"])))
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
     {
-        $usernameErr = "Please enter username.";
-    }
-    else
-    {
-        $username = trim($_POST["username"]);
+        header("location: ../index.php");
+        exit;
     }
 
-    if(empty(trim($_POST["password"])))
+    require_once "config.php";
+
+    $mysqli = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+    if($mysqli === false)
     {
-        $passwordErr = "Please enter your password.";
-    }
-    else
-    {
-        $password = trim($_POST["password"]);
+        die("ERROR: Could not connect. " . mysqli_connect_error());
     }
 
-    if(empty($usernameErr) && empty($passwordErr))
-    {
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+    $username = $password = "";
+    $usernameErr = $passwordErr = $loginErr = "";
 
-        if($stmt = $mysqli->prepare($sql))
+    if($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+        if(empty(trim($_POST["username"])))
         {
-            $stmt->bind_param("s", $param_username);
-            $param_username = $username;
+            $usernameErr = "Please enter username.";
+        }
+        else
+        {
+            $username = trim($_POST["username"]);
+        }
 
-            if($stmt->execute())
+        if(empty(trim($_POST["password"])))
+        {
+            $passwordErr = "Please enter your password.";
+        }
+        else
+        {
+            $password = trim($_POST["password"]);
+        }
+
+        if(empty($usernameErr) && empty($passwordErr))
+        {
+            $sql = "SELECT id, username, password FROM users WHERE username = ?";
+
+            if($stmt = $mysqli->prepare($sql))
             {
-                $stmt->store_result();
+                $stmt->bind_param("s", $param_username);
+                $param_username = $username;
 
-                if($stmt->num_rows == 1)
+                if($stmt->execute())
                 {
-                    $stmt->bind_result($id, $username, $hashed_password);
-                    if($stmt->fetch())
+                    $stmt->store_result();
+
+                    if($stmt->num_rows == 1)
                     {
-                        if(password_verify($password, $hashed_password))
+                        $stmt->bind_result($id, $username, $hashed_password);
+                        if($stmt->fetch())
                         {
-                            session_start();
+                            if(password_verify($password, $hashed_password))
+                            {
+                                session_start();
 
-                            $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["username"] = $username;
+                                $_SESSION["loggedin"] = true;
+                                $_SESSION["id"] = $id;
+                                $_SESSION["username"] = $username;
 
-                            $sql="UPDATE `users` SET `client_code`='.$id.' WHERE `username`='.$username.'";
-                            echo $sql;
-                            $result = $mysqli->query($sql);
-                            printf("Select returned %d rows.\n", $result->num_rows);
-                            header("location: ../index.php");
-
+                                $sql="UPDATE `users` SET `client_code`='.$id.' WHERE `username`='.$username.'";
+                                $result = $mysqli->query($sql);
+                                header("location: ../index.php");
+                            }
+                            else
+                            {
+                                $loginErr = "Invalid username or password.";
+                            }
                         }
-                        else
-                        {
-                            $loginErr = "Invalid username or password.";
-                        }
+                    }
+                    else
+                    {
+                        $loginErr = "Invalid username or password.";
                     }
                 }
                 else
                 {
-                    $loginErr = "Invalid username or password.";
+                    echo "Oops! Something went wrong. Please try again later.";
                 }
+                $stmt->close();
             }
-            else
-            {
-                echo "Oops! Something went wrong. Please try again later.";
-            }
-            $stmt->close();
         }
+        $mysqli->close();
     }
-    $mysqli->close();
-}
 ?>
 
 <!DOCTYPE html>
@@ -172,9 +169,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                         <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                             <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                                 <h4 class="mb-4">We are more than just a company</h4>
-                                <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <p class="small mb-0">Bine ați venit la magazinul nostru online de articole sportive!
+                                    Oferim o gamă largă de echipamente și accesorii sportive pentru diverse sporturi și activități.
+                                    Indiferent dacă sunteți un atlet experimentat sau începător, avem ceva pentru toată lumea.
+                                    Selecția noastră include de la mingi de baschet și fotbal până la pantofi de alergare și mături de yoga.
+                                    De asemenea, avem o varietate de echipamente pentru exterior, cum ar fi corturi de camping și rucsacuri de drumeție.
+                                    Ne mândrim cu oferirea de produse de înaltă calitate la prețuri competitive și echipa noastră prietenoasă de servicii pentru clienți este întotdeauna aici pentru a vă ajuta să găsiți exact ceea ce aveți nevoie.
+                                    Vă mulțumim că ați ales magazinul nostru pentru toate nevoile dvs. de articole sportive!</p>
                             </div>
                         </div>
                     </div>

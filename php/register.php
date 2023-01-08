@@ -15,11 +15,11 @@
     {
         if(empty(trim($_POST["username"])))
         {
-            $username_err = "Please enter a username.";
+            $usernameErr = "Please enter a username.";
         }
         elseif(!preg_match('/^[a-zA-Z0-9_]+$/', trim($_POST["username"])))
         {
-            $username_err = "Username can only contain letters, numbers, and underscores.";
+            $usernameErr = "Username can only contain letters, numbers, and underscores.";
         }
         else
         {
@@ -37,7 +37,7 @@
                     
                     if($stmt->num_rows() == 1)
                     {
-                        $username_err = "This username is already taken.";
+                        $usernameErr = "This username is already taken.";
                     }
                     else
                     {
@@ -54,11 +54,11 @@
 
         if(empty(trim($_POST["password"])))
         {
-            $password_err = "Please enter a password.";
+            $passwordErr = "Please enter a password.";
         }
         elseif(strlen(trim($_POST["password"])) < 6)
         {
-            $password_err = "Password must have at least 6 characters.";
+            $passwordErr = "Password must have at least 6 characters.";
         }
         else
         {
@@ -67,18 +67,18 @@
 
         if(empty(trim($_POST["confirm_password"])))
         {
-            $confirm_password_err = "Please confirm password.";
+            $confirm_passwordErr = "Please confirm password.";
         }
         else
         {
             $confirm_password = trim($_POST["confirm_password"]);
-            if(empty($password_err) && ($password != $confirm_password))
+            if(empty($passwordErr) && ($password != $confirm_password))
             {
-                $confirm_password_err = "Password did not match.";
+                $confirm_passwordErr = "Password did not match.";
             }
         }
 
-        if(empty($username_err) && empty($password_err) && empty($confirm_password_err))
+        if(empty($usernameErr) && empty($passwordErr) && empty($confirm_passwordErr))
         {
             $sql = "INSERT INTO `users` (`username`, `password`, `client_code`) VALUES (?, ?, 0)";
 
@@ -153,20 +153,20 @@
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                         <div class="form-outline mb-4">
                                             <label>Username</label>
-                                            <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                                            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                                            <input type="text" name="username" class="form-control <?php echo (!empty($usernameErr)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                                            <span class="invalid-feedback"><?php echo $usernameErr; ?></span>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label>Password</label>
-                                            <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                                            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                                            <input type="password" name="password" class="form-control <?php echo (!empty($passwordErr)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                                            <span class="invalid-feedback"><?php echo $passwordErr; ?></span>
                                         </div>
 
                                         <div class="form-outline mb-4">
                                             <label>Confirm Password</label>
-                                            <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                                            <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                                            <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_passwordErr)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                                            <span class="invalid-feedback"><?php echo $confirm_passwordErr; ?></span>
                                         </div>
 
                                         <div class="form-group">
@@ -182,9 +182,12 @@
                             <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
                                 <div class="text-white px-3 py-4 p-md-5 mx-md-4">
                                     <h4 class="mb-4">We are more than just a company</h4>
-                                    <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <p class="small mb-0">Oferim o gamă largă de echipamente și accesorii sportive pentru diverse sporturi și activități.
+                                        Indiferent dacă sunteți un atlet experimentat sau începător, avem ceva pentru toată lumea.
+                                        Selecția noastră include de la mingi de baschet și fotbal până la pantofi de alergare și mături de yoga.
+                                        De asemenea, avem o varietate de echipamente pentru exterior, cum ar fi corturi de camping și rucsacuri de drumeție.
+                                        Ne mândrim cu oferirea de produse de înaltă calitate la prețuri competitive și echipa noastră prietenoasă de servicii pentru clienți este întotdeauna aici pentru a vă ajuta să găsiți exact ceea ce aveți nevoie.
+                                        Vă mulțumim că ați ales magazinul nostru pentru toate nevoile dvs. de articole sportive!</p>
                                 </div>
                             </div>
                     </div>

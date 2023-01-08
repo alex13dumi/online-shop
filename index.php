@@ -108,7 +108,7 @@
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                    <a href="cart.php" class="dropdown-item">Shopping Cart</a>
                                     <a href="checkout.php" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
@@ -427,26 +427,15 @@
                 //`numeClient`=\''.$_POST['search_client'].'\'
                 $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
                 $sql = 'SELECT `idArticol`, `numeArticol`, `pretCurentArticol` FROM tblArticole';
-                if (!is_null($mysqli))
-                {
-                    /*echo 'Success.....' . $mysqli->host_info;
-                    echo '<br></br>';
-                    echo 'Connected !\nClient library version: ' . $mysqli->client_info;
-                    echo '<br ></br >';
-                    echo 'Server' . $mysqli->server_info;*/
-                }
-                else
-                {
-                    echo "\nCouldn\'t connect to $mysqli->host_info\n";
-                }
                 $result = $mysqli->query($sql);
                 if (!$result->num_rows)
-                    throw new Exception('Name or telephone doesn\'t exist');
+                    echo 'Name or telephone doesn\'t exist';
 
                 else
-                    {
+                {
                         $i=0;
-                        while ($obj = $result->fetch_object()) {
+                        while ($obj = $result->fetch_object())
+                        {
                             echo'<div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                                 <div class="product-item bg-light mb-4">
                                     <div class="product-img position-relative overflow-hidden">

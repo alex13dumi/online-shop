@@ -324,7 +324,7 @@
 
                     //`numeClient`=\''.$_POST['search_client'].'\'
                     $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
-                    $sql = 'SELECT `numeArticol`, `pretCurentArticol` FROM tblArticole';
+                    $sql = 'SELECT `idArticol`, `numeArticol`, `pretCurentArticol` FROM tblArticole';
                     if (!is_null($mysqli))
                     {
                         /*echo 'Success.....' . $mysqli->host_info;
@@ -358,7 +358,7 @@
                                 </div>
                                 
                                 <div class="text-center py-4">
-                                    <a class="h6 text-decoration-none text-truncate" href="">'.$obj->numeArticol.'</a>
+                                    <a class="h6 text-decoration-none text-truncate" href="detail.php?id='.$obj->idArticol.'">'.$obj->numeArticol.'</a>
                                     <div class="d-flex align-items-center justify-content-center mt-2">
                                         <h5>' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
                                     </div>

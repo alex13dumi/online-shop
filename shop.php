@@ -117,7 +117,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
                             <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                 <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                <a href="checkout.html" class="dropdown-item">Checkout</a>
+                                <a href="checkout.php" class="dropdown-item">Checkout</a>
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -163,116 +163,32 @@
             <!-- Price Start -->
             <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by price</span></h5>
             <div class="bg-light p-4 mb-30">
-                <form>
+                <form method="post">
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="price-all">
-                        <label class="custom-control-label" for="price-all">All Price</label>
-                        <span class="badge border font-weight-normal">1000</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-1">
+                        <input type="checkbox" class="custom-control-input" id="price-1" name="price-1"<?php if(!is_null($_POST['price-1'])) echo ' checked' ?>>
                         <label class="custom-control-label" for="price-1">$0 - $100</label>
-                        <span class="badge border font-weight-normal">150</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-2">
+                        <input type="checkbox" class="custom-control-input" id="price-2" name="price-2"<?php if(!is_null($_POST['price-2'])) echo ' checked' ?>>
                         <label class="custom-control-label" for="price-2">$100 - $200</label>
-                        <span class="badge border font-weight-normal">295</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-3">
+                        <input type="checkbox" class="custom-control-input" id="price-3" name="price-3"<?php if(!is_null($_POST['price-3'])) echo ' checked' ?>>
                         <label class="custom-control-label" for="price-3">$200 - $300</label>
-                        <span class="badge border font-weight-normal">246</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="price-4">
+                        <input type="checkbox" class="custom-control-input" id="price-4" name="price-4"<?php if(!is_null($_POST['price-4'])) echo ' checked' ?>>
                         <label class="custom-control-label" for="price-4">$300 - $400</label>
-                        <span class="badge border font-weight-normal">145</span>
                     </div>
                     <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="price-5">
+                        <input type="checkbox" class="custom-control-input" id="price-5" name="price-5"<?php if(!is_null($_POST['price-5'])) echo ' checked' ?>>
                         <label class="custom-control-label" for="price-5">$400 - $500</label>
-                        <span class="badge border font-weight-normal">168</span>
                     </div>
+                    <br/>
+                    <input type="submit" name="UpdateFilter" value="Update price" class="btn btn-primary profile-button">
                 </form>
             </div>
             <!-- Price End -->
-
-            <!-- Color Start -->
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by color</span></h5>
-            <div class="bg-light p-4 mb-30">
-                <form>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="color-all">
-                        <label class="custom-control-label" for="price-all">All Color</label>
-                        <span class="badge border font-weight-normal">1000</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="color-1">
-                        <label class="custom-control-label" for="color-1">Black</label>
-                        <span class="badge border font-weight-normal">150</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="color-2">
-                        <label class="custom-control-label" for="color-2">White</label>
-                        <span class="badge border font-weight-normal">295</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="color-3">
-                        <label class="custom-control-label" for="color-3">Red</label>
-                        <span class="badge border font-weight-normal">246</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="color-4">
-                        <label class="custom-control-label" for="color-4">Blue</label>
-                        <span class="badge border font-weight-normal">145</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="color-5">
-                        <label class="custom-control-label" for="color-5">Green</label>
-                        <span class="badge border font-weight-normal">168</span>
-                    </div>
-                </form>
-            </div>
-            <!-- Color End -->
-
-            <!-- Size Start -->
-            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Filter by size</span></h5>
-            <div class="bg-light p-4 mb-30">
-                <form>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" checked id="size-all">
-                        <label class="custom-control-label" for="size-all">All Size</label>
-                        <span class="badge border font-weight-normal">1000</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-1">
-                        <label class="custom-control-label" for="size-1">XS</label>
-                        <span class="badge border font-weight-normal">150</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-2">
-                        <label class="custom-control-label" for="size-2">S</label>
-                        <span class="badge border font-weight-normal">295</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-3">
-                        <label class="custom-control-label" for="size-3">M</label>
-                        <span class="badge border font-weight-normal">246</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
-                        <input type="checkbox" class="custom-control-input" id="size-4">
-                        <label class="custom-control-label" for="size-4">L</label>
-                        <span class="badge border font-weight-normal">145</span>
-                    </div>
-                    <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
-                        <input type="checkbox" class="custom-control-input" id="size-5">
-                        <label class="custom-control-label" for="size-5">XL</label>
-                        <span class="badge border font-weight-normal">168</span>
-                    </div>
-                </form>
-            </div>
-            <!-- Size End -->
         </div>
         <!-- Shop Sidebar End -->
 
@@ -308,33 +224,76 @@
                 </div>
                 <?php
                     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
-
                     $images = array("img/product-1.jpg", "img/product-2.jpg", "img/product-3.jpg", "img/product-4.jpg", "img/product-5.jpg", "img/product-6.jpg", "img/product-7.jpg", "img/product-8.jpg", "img/product-9.jpg", "img/product-10.jpg");
 
                     //`numeClient`=\''.$_POST['search_client'].'\'
                     $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
                     $sql = 'SELECT `idArticol`, `numeArticol`, `pretCurentArticol` FROM tblArticole';
-                    if (!is_null($mysqli))
+
+                    $whereVector = [];
+
+                    if(!is_null($_GET['productName']))
+                        array_push($whereVector, '`numeArticol`="' .$mysqli->real_escape_string($_GET['productName']). '"');
+
+                    if(!is_null($_POST['UpdateFilter']))
                     {
-                        /*echo 'Success.....' . $mysqli->host_info;
-                        echo '<br></br>';
-                        echo 'Connected !\nClient library version: ' . $mysqli->client_info;
-                        echo '<br ></br >';
-                        echo 'Server' . $mysqli->server_info;*/
+                        $priceFilters = [];
+
+                        if (!is_null($_POST['price-1']))
+                        {
+                            array_push($priceFilters, "`pretCurentArticol` >= 0 AND `pretCurentArticol` <= 100");
+                        }
+                        if (!is_null($_POST['price-2']))
+                        {
+                            array_push($priceFilters, "`pretCurentArticol` >= 100 AND `pretCurentArticol` <= 200");
+                        }
+                        if (!is_null($_POST['price-3']))
+                        {
+                            array_push($priceFilters, "`pretCurentArticol` >= 200 AND `pretCurentArticol` <= 300");
+                        }
+                        if (!is_null($_POST['price-4']))
+                        {
+                            array_push($priceFilters, "`pretCurentArticol` >= 300 AND `pretCurentArticol` <= 400");
+                        }
+                        if (!is_null($_POST['price-5']))
+                        {
+                            array_push($priceFilters, "`pretCurentArticol` >= 400 AND `pretCurentArticol` <= 500");
+                        }
+
+                        if(count($priceFilters))
+                        {
+                            $priceFilterClause = '';
+                            $isFirstPrice = true;
+                            foreach ($priceFilters as $priceFilter)
+                            {
+                                $priceFilterClause .= (!$isFirstPrice ? ' OR ' : '') . '('.$priceFilter.')';
+                                $isFirstPrice = false;
+                            }
+                            array_push($whereVector, $priceFilterClause);
+                        }
                     }
-                    else
+
+                    if (count($whereVector))
                     {
-                        echo "\nCouldn\'t connect to $mysqli->host_info\n";
+                        $isFirstElement = true;
+                        $sql .= ' WHERE ';
+
+                        foreach($whereVector as $whereElement )
+                        {
+                            $sql .= (!$isFirstElement ? ' AND ' : '') . '('.$whereElement.')';
+                            $isFirstElement = false;
+                        }
                     }
 
                     $result = $mysqli->query($sql);
                     if (!$result->num_rows)
-                        throw new Exception('Name or telephone doesn\'t exist');
+                        echo 'Name or telephone doesn\'t exist';
 
                     else
                     {
                         $i=0;
-                        while ($obj = $result->fetch_object()) {
+                        while ($obj = $result->fetch_object())
+                        {
                             echo '<div class="col-lg-4 col-md-6 col-sm-6 pb-1">
                                         <div class="p-item bg-light mb-4">
                                             <div class="p-img position-relative overflow-hidden">

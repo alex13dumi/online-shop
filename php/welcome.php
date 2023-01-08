@@ -9,36 +9,38 @@
         exit;
     }
 
+    $username = $name = $phone = $email = $complete_name = $phone_number =  "";
+    $usernameErr = $nameErr = $phoneErr = $emailErr = $complete_nameErr = $phone_numberErr = "";
+
     function UpdateUser()
     {
-        try {
-            if($_SERVER["REQUEST_METHOD"] == "POST")
+        if($_SERVER["REQUEST_METHOD"] == "POST")
+        {
+            if (empty(trim($_POST['username_client_nou'])))
             {
-                if (empty($_POST['username_client_nou']))
-                    throw new Exception('Username can\'t be empty');
-
+                $usernameErr = "Please enter username.";
+            }
+            else
+            {
+                $username = trim($_POST['username_client_nou']);
+            }
+            if (empty($usernameErr))
+            {
                 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
                 $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-                $sql = 'UPDATE `users` SET `username`=\'' . trim($_POST['username_client_nou']) . '\' WHERE id=' .$_SESSION["id"];
-                if ($stmt = $mysqli->prepare($sql))
-                {
-                    if ($stmt->execute())
-                    {
+                $sql = 'UPDATE `users` SET `username`=\'' . $username . '\' WHERE id=' . $_SESSION["id"];
+                if ($stmt = $mysqli->prepare($sql)) {
+                    if ($stmt->execute()) {
                         session_destroy();
                         header("location: login.php");
                         exit();
-                    }
-                    else
-                    {
+                    } else {
                         echo "Oops! Something went wrong. Please try again later.";
                     }
                     $stmt->close();
                 }
                 $mysqli->close();
             }
-        }catch (Exception $e)
-        {
-            echo '<br></br> Caught exception: '. $e->getMessage();
         }
     }
 
@@ -187,10 +189,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Welcome</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             background: #ff8900
@@ -273,67 +276,58 @@
         <a href="reset-password.php" class="btn btn-primary exit-button" style="position: relative; left:700px">Reset Your Password</a>
         <a href="logout.php" class="btn btn-primary exit-button" style="position: relative; left:750px">Sign Out of Your Account</a>
     </p>
-    <div class="container rounded bg-white mt-5 mb-5">
-        <div class="row">
-            <div class="col-md-3 border-right">
-                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><?php echo $_SESSION['username'];?></span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
-            </div>
-            <div class="col-md-5 border-right">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h4 class="text-right">Profile Settings</h4>
-                    </div>
-
-            <hr>
-                <h4 class="text-right">Update client</h4>
-                <form method="post" autocomplete="off">
-                    <p>
-                    <div class="row mt-2">
-                        <label for="username_client" class="labels"><b>Current username:</label>
-                        <input type="username" class="form-control" name="username_client" id="username_client" value="<?php echo $_SESSION['username'];?>" readonly>
-                        <label for="username_client" class="labels"><b>New username:</label>
-                        <input type="username" class="form-control" name="username_client_nou" id="username_client_nou" >
-                        <br>
-                        <div class="text-right">
-                            <input type="submit" name="UpdateUser" value="Update" class="btn btn-primary profile-button">
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><?php echo $_SESSION['username'];?></span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                </div>
+                <div class="col-md-5 border-right">
+                    <div class="p-3 py-5">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 class="text-right">Profile Settings</h4>
                         </div>
-                        </br>
-                            <h4 class="text-right">Adauga client</h4>
-                            <label class="labels" for="nume"><b>Nume:</label>
-                            <input type="username" class="form-control" name="create_client" id="create_client" >
-                            <label class="labels" for="nume"><b>Telefon:</label>
-                            <input type="username" class="form-control" name="create_phone" id="create_phone" >
-                            <label class="labels" for="nume"><b>Email:</label>
-                            <input type="username" class="form-control" name="create_email" id="create_email" >
-                        <br>
-                        <div class="text-right">
-                            <input type="submit" name="CreateClient" value="Add" class="btn btn-primary profile-button">
-                        </div>
-                        </br>
-
-                        <h4 class="text-right">Cauta comanda</h4>
+                        <h4 class="text-right">Update client</h4>
                         <form method="post" autocomplete="off">
-                            <p>
-                                <label class="labels" for="search_client"><b>Nume complet:</label>
-                                <input type="text" class="form-control" name="search_client" id="search_client" style="width: 250px;">
-                                <label class="labels" for="search_phone"><b>Nr. telefon:</label>
-                                <input type="text" class="form-control" name="search_phone" id="search_phone" style="width: 250px;">
-                            </p>
-                            <br>
-                            <input type="submit" name="SearchClient" value="Cauta" class="btn btn-primary profile-button">
+
+                            <div class="row mt-2">
+                                <label for="username_client" class="labels col-md-6"><b>Current username:</label>
+                                <input type="text" class="form-control" name="username_client" id="username_client" value="<?php echo $_SESSION['username'];?>" readonly>
+                                <label for="username_client" class="labels col-md-6"><b>New username:</label>
+                                <input type="text" class="form-control" name="username_client_nou" id="username_client_nou">
+                                <span class="invalid-feedback"><?php echo $usernameErr; ?></span>
+
+                                <br>
+                                <input type="submit" name="UpdateUser" value="Update" class="btn btn-primary profile-button">
+                                <br>
+
+                                <h4 class="text-right">Adauga client</h4>
+                                    <label class="labels col-md-6" for="nume"><b>Nume:</label>
+                                    <input type="text" class="form-control" name="create_client" id="create_client" >
+                                    <label class="labels col-md-6" for="nume"><b>Telefon:</label>
+                                    <input type="text" class="form-control" name="create_phone" id="create_phone" >
+                                    <label class="labels col-md-6" for="nume"><b>Email:</label>
+                                    <input type="text" class="form-control" name="create_email" id="create_email" >
+                                <br>
+                                <input type="submit" name="CreateClient" value="Add" class="btn btn-primary profile-button">
+                                <br>
+
+                                <h4 class="text-right">Cauta comanda</h4>
+                                <form method="post" autocomplete="off">
+                                    <p>
+                                        <label class="labels col-md-6" for="search_client"><b>Nume complet:</label>
+                                        <input type="text" class="form-control" name="search_client" id="search_client" style="width: 250px;">
+                                        <label class="labels col-md-6" for="search_phone"><b>Nr. telefon:</label>
+                                        <input type="text" class="form-control" name="search_phone" id="search_phone" style="width: 250px;">
+                                    </p>
+                                    <br>
+                                    <input type="submit" name="SearchClient" value="Cauta" class="btn btn-primary profile-button">
+                                </form>
+                            </div>
                         </form>
                     </div>
-                    <br>
-                    </p>
-                </form>
-            <hr>
+                </div>
             </div>
         </div>
-        </div>
-        </div>
-    </div>
-    </div>
-    </div>
-</body>
+    </body>
 </html>
 

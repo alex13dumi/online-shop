@@ -9,176 +9,185 @@
         exit;
     }
 
-    $username = $name = $phone = $email = $complete_name = $phone_number =  "";
-    $usernameErr = $nameErr = $phoneErr = $emailErr = $complete_nameErr = $phone_numberErr = "";
+    $username = $name = $phone = $email = "";
+    $usernameErr = $nameErr = $phoneErr = $emailErr = $complete_nameErr = $phone_numberErr = $generalErr = "";
 
     function UpdateUser()
     {
-        if($_SERVER["REQUEST_METHOD"] == "POST")
+        global $usernameErr;
+
+        if($_SERVER["REQUEST_METHOD"] != "POST")
+            return;
+
+        if (empty(trim($_POST['username_client_nou'])))
         {
-            if (empty(trim($_POST['username_client_nou'])))
+            $usernameErr = "Please enter username.";
+        }
+        else
+        {
+            $username = trim($_POST['username_client_nou']);
+        }
+        if (empty($usernameErr))
+        {
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
+            $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+            $sql = 'UPDATE `users` SET `username`=\'' . $username . '\' WHERE id=' . $_SESSION["id"];
+            if ($stmt = $mysqli->prepare($sql))
             {
-                $usernameErr = "Please enter username.";
-            }
-            else
-            {
-                $username = trim($_POST['username_client_nou']);
-            }
-            if (empty($usernameErr))
-            {
-                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
-                $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-                $sql = 'UPDATE `users` SET `username`=\'' . $username . '\' WHERE id=' . $_SESSION["id"];
-                if ($stmt = $mysqli->prepare($sql)) {
-                    if ($stmt->execute()) {
-                        session_destroy();
-                        header("location: login.php");
-                        exit();
-                    } else {
-                        echo "Oops! Something went wrong. Please try again later.";
-                    }
-                    $stmt->close();
+                if ($stmt->execute())
+                {
+                    session_destroy();
+                    header("location: login.php");
+                    exit();
                 }
-                $mysqli->close();
+                else
+                {
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
+                $stmt->close();
             }
+            $mysqli->close();
         }
     }
 
     function CreateClient()
     {
-        try
+        if($_SERVER["REQUEST_METHOD"] != "POST")
+            return;
+
+        global $name, $phone, $email;
+        global $generalErr, $nameErr, $phoneErr, $emailErr;
+
+        $name = FormatName($_POST['create_client']);
+        $email = trim($_POST['create_email']);
+        $phone = trim($_POST['create_phone']);
+        $coduser = $_SESSION["id"];
+
+        if (empty($name))
         {
-            if($_SERVER["REQUEST_METHOD"] == "POST")
+            $nameErr = 'Field is empty !';
+        }
+        if(empty($phone))
+        {
+            $phoneErr = 'Field is empty !';
+        }
+        if(empty($email))
+        {
+            $emailErr = 'Field is empty !';
+        }
+        if (!preg_match("/^[a-zA-Z-' ]*$/", $name))
+        {
+             $nameErr = 'Only letters and white space allowed';
+        }
+        if (!preg_match("/^(?:(?:(?:00\s?|\+)40\s?|0)(?:7\d{2}\s?\d{3}\s?\d{3}|(21|31)\d{1}\s?\d{3}\s?\d{3}|((2|3)[3-7]\d{1})\s?\d{3}\s?\d{3}|(8|9)0\d{1}\s?\d{3}\s?\d{3}))$/", $phone))
+        {
+            $phoneErr = 'Only 10 digit numbers are allowed !';
+        }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            $emailErr = 'Invalid email format';
+        }
+        if(empty($nameErr) and empty($phoneErr) and empty($emailErr))
+        {
+            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
+
+            $sql = 'INSERT INTO `tblClienti` (`numeClient`, `telefonClient`, `emailClient`, `codUser`) VALUES (?,?,?,?)';
+            $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
+
+            $stmt = $mysqli->prepare($sql);
+            $stmt->execute([$name, $phone, $email, $coduser]);
+
+            if (!$stmt->affected_rows)
             {
-                global $name, $phone, $email;
-                $name = FormatName($_POST['create_client']);
-                $phone = trim($_POST['create_phone']);
-                $email = trim($_POST['create_email']);
-                $coduser = $_SESSION["id"];
-
-                if (empty($name) or empty($phone) or empty($email)) {
-                    throw new Exception('Campul nu trebuie sa fie gol! Va rugam completati cu ceva');
-                }
-                if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
-                    throw new Exception('Only letters and white space allowed');
-                }
-                if (!preg_match("/^(?:(?:(?:00\s?|\+)40\s?|0)(?:7\d{2}\s?\d{3}\s?\d{3}|(21|31)\d{1}\s?\d{3}\s?\d{3}|((2|3)[3-7]\d{1})\s?\d{3}\s?\d{3}|(8|9)0\d{1}\s?\d{3}\s?\d{3}))$/", $phone)) {
-                    throw new Exception('Only 10 digit numbers are allowed ! ');
-                }
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    throw new Exception('Invalid email format');
-                } else {
-                    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
-
-                    $sql = 'INSERT INTO `tblClienti` (`numeClient`, `telefonClient`, `emailClient`, `codUser`) VALUES (?,?,?,?)';
-                    $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
-                    echo $sql;
-                    if (!is_null($mysqli)) {
-                        echo 'Success.....' . $mysqli->host_info;
-                        echo '<br></br>';
-                        echo 'Connected ! Client library version: ' . $mysqli->client_info;
-                        echo '<br ></br >';
-                        echo 'Server' . $mysqli->server_info;
-                    } else {
-                        echo "\nCouldn\'t connect to $mysqli->host_info\n";
-                    }
-
-                    $stmt = $mysqli->prepare($sql);
-                    $stmt->execute([$name, $phone, $email, $coduser]);
-                    echo $coduser;
-
-                    if (!$stmt->affected_rows) {
-                        throw new Exception('Couldn\'t INSERT into `tblClienti` !');
-                    }
-                    echo 'Inserted user: ', $name, ' ', $phone, ' ', $email;
-                    $stmt->close();
-                    $mysqli->close();
-                }
-
+                $generalErr = 'Couldn\'t INSERT into `tblClienti`!';
             }
-        }catch (Exception $e) {
-            echo 'Caught exception: ', $e->getMessage(), "\n";
-            exit();
+            $stmt->close();
+            $mysqli->close();
         }
     }
 
     function SearchClient()
     {
-        if($_SERVER["REQUEST_METHOD"] == "POST") {
-            try {
-                mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
+        if($_SERVER["REQUEST_METHOD"] != "POST")
+            return;
 
-                $sql = 'SELECT `numeClient`, `telefonClient`, `emailClient`, `pretComanda`, `adresaComanda`, `statusComanda`, `dataPlasareComanda` FROM `tblClienti` JOIN `tblComenzi`' .
-                    ' ON `codUser`=`codClient` WHERE `numeClient`=\'' . FormatName($_POST['search_client']) . '\' AND `telefonClient`=\'' . trim($_POST['search_phone']) . '\' AND `codUser`='.$_SESSION['id'].'';
+        global $generalErr, $complete_nameErr, $phone_numberErr;
 
-                //`numeClient`=\''.$_POST['search_client'].'\'
-                $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
 
-                if (!is_null($mysqli))
+        $sql = 'SELECT `numeClient`, `telefonClient`, `emailClient`, `pretComanda`, `adresaComanda`, `statusComanda`, `dataPlasareComanda` FROM `tblClienti` JOIN `tblComenzi`' .
+               ' ON `codUser`=`codClient` WHERE `numeClient`=\'' . FormatName($_POST['search_client']) . '\' AND `telefonClient`=\'' . trim($_POST['search_phone']) . '\' AND `codUser`='.$_SESSION['id'].'';
+        $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
+
+        if(empty(FormatName($_POST['search_client'])))
+        {
+            $complete_nameErr = "Name is empty";
+        }
+        if(empty(FormatName($_POST['search_phone'])))
+        {
+            $phone_numberErr = "Phone is empty";
+        }
+        if (!preg_match("/^[a-zA-Z-' ]*$/", FormatName($_POST['search_client'])))
+        {
+            $complete_nameErr = 'Only letters and white space allowed';
+        }
+        if (!preg_match("/^(?:(?:(?:00\s?|\+)40\s?|0)(?:7\d{2}\s?\d{3}\s?\d{3}|(21|31)\d{1}\s?\d{3}\s?\d{3}|((2|3)[3-7]\d{1})\s?\d{3}\s?\d{3}|(8|9)0\d{1}\s?\d{3}\s?\d{3}))$/", trim($_POST['search_phone'])))
+        {
+            $phone_numberErr = 'Only 10 digit numbers are allowed !';
+        }
+        if(empty($complete_nameErr) and empty($complete_phoneErr) and empty($generalErr))
+        {
+            $result = $mysqli->query($sql);
+
+            if (!$result->num_rows)
+                $generalErr = 'Name or telephone doesn\'t exist or order doesn\'t belong to you !';
+
+            else
+            {
+                $i=0;
+                while ($obj = $result->fetch_object())
                 {
-                    echo 'Success.....' . $mysqli->host_info;
-                    echo '<br></br>';
-                    echo 'Connected !\nClient library version: ' . $mysqli->client_info;
-                    echo '<br ></br >';
-                    echo 'Server' . $mysqli->server_info;
-                } else {
-                    echo "\nCouldn\'t connect to $mysqli->host_info\n";
+                    echo'<table class="table table-dark">
+                                  <thead class="thead-dark">
+                                    <tr>
+                                      <th scope="col">#</th>
+                                      <th scope="col">numeClient</th>
+                                      <th scope="col">telefonClient</th>
+                                      <th scope="col">emailClient</th>
+                                      <th scope="col">pretComanda</th>
+                                      <th scope="col">adresaComanda</th>
+                                      <th scope="col">statusComanda</th>
+                                      <th scope="col">dataPlasareComanda</th>
+                                    </tr>
+                                  </thead>
+                            ';
+                    echo'
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row">' .$i. '</th>
+                                      <td>' .$obj->numeClient. '</td>
+                                      <td>' .$obj->telefonClient. '</td>
+                                      <td>' .$obj->emailClient. '</td>
+                                      <td>' .$obj->pretComanda. '</td>
+                                      <td>' .$obj->adresaComanda. '</td>
+                                      <td>' .$obj->statusComanda. '</td>
+                                      <td>' .$obj->dataPlasareComanda. '</td>
+                                    </tr>
+                                 </tbody>
+                                </table>
+                            ';
+                    $i++;
                 }
-
-                $result = $mysqli->query($sql);
-                if (!$result->num_rows)
-                    throw new Exception('Name or telephone doesn\'t exist or order doesn\'t belong to you !');
-                else
-                {
-                    $i=0;
-                    while ($obj = $result->fetch_object())
-                    {
-                        echo'<table class="table table-dark">
-                                      <thead class="thead-dark">
-                                        <tr>
-                                          <th scope="col">#</th>
-                                          <th scope="col">numeClient</th>
-                                          <th scope="col">telefonClient</th>
-                                          <th scope="col">emailClient</th>
-                                          <th scope="col">pretComanda</th>
-                                          <th scope="col">adresaComanda</th>
-                                          <th scope="col">statusComanda</th>
-                                          <th scope="col">dataPlasareComanda</th>
-                                        </tr>
-                                      </thead>
-                                ';
-                        echo'
-                                      <tbody>
-                                        <tr>
-                                          <th scope="row">' .$i. '</th>
-                                          <td>' .$obj->numeClient. '</td>
-                                          <td>' .$obj->telefonClient. '</td>
-                                          <td>' .$obj->emailClient. '</td>
-                                          <td>' .$obj->pretComanda. '</td>
-                                          <td>' .$obj->adresaComanda. '</td>
-                                          <td>' .$obj->statusComanda. '</td>
-                                          <td>' .$obj->dataPlasareComanda. '</td>
-                                        </tr>
-                                     </tbody>
-                                    </table>
-                                ';
-                        $i++;
-                    }
-                }
-                $result->close();
-                $mysqli->close();
-            } catch (Exception $e) {
-                echo '<br></br>';
-                echo 'Caught exception: ' . $e->getMessage();
-                exit();
             }
+            $result->close();
+            $mysqli->close();
         }
     }
 
     if(isset($_POST['CreateClient'])){
         CreateClient();
     }
-    if(isset($_POST['UpdateUser']) ){
+    if(isset($_POST['UpdateUser'])){
         UpdateUser();
     }
     if(isset($_POST['SearchClient'])){
@@ -271,63 +280,73 @@
     </style>
 </head>
     <body>
-    <h1 class="">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
-    <p>
-        <a href="reset-password.php" class="btn btn-primary exit-button" style="position: relative; left:700px">Reset Your Password</a>
-        <a href="logout.php" class="btn btn-primary exit-button" style="position: relative; left:750px">Sign Out of Your Account</a>
-    </p>
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
                 <div class="col-md-3 border-right">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold"><?php echo $_SESSION['username'];?></span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
                 </div>
-                <div class="col-md-5 border-right">
-                    <div class="p-3 py-5">
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Profile Settings</h4>
-                        </div>
-                        <h4 class="text-right">Update client</h4>
-                        <form method="post" autocomplete="off">
+                    <div class="col-md-5 border-right">
+                        <div class="p-3 py-5">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right <?php echo (!empty($generalErr)) ? ' is-invalid' : ''; ?>">Profile Settings</h4>
+                                <br/>
+                                <span class="invalid-feedback"><?php echo $generalErr; ?></span>
 
-                            <div class="row mt-2">
-                                <label for="username_client" class="labels col-md-6"><b>Current username:</label>
-                                <input type="text" class="form-control" name="username_client" id="username_client" value="<?php echo $_SESSION['username'];?>" readonly>
-                                <label for="username_client" class="labels col-md-6"><b>New username:</label>
-                                <input type="text" class="form-control" name="username_client_nou" id="username_client_nou">
-                                <span class="invalid-feedback"><?php echo $usernameErr; ?></span>
-
-                                <br>
-                                <input type="submit" name="UpdateUser" value="Update" class="btn btn-primary profile-button">
-                                <br>
-
-                                <h4 class="text-right">Adauga client</h4>
-                                    <label class="labels col-md-6" for="nume"><b>Nume:</label>
-                                    <input type="text" class="form-control" name="create_client" id="create_client" >
-                                    <label class="labels col-md-6" for="nume"><b>Telefon:</label>
-                                    <input type="text" class="form-control" name="create_phone" id="create_phone" >
-                                    <label class="labels col-md-6" for="nume"><b>Email:</label>
-                                    <input type="text" class="form-control" name="create_email" id="create_email" >
-                                <br>
-                                <input type="submit" name="CreateClient" value="Add" class="btn btn-primary profile-button">
-                                <br>
-
-                                <h4 class="text-right">Cauta comanda</h4>
-                                <form method="post" autocomplete="off">
-                                    <p>
-                                        <label class="labels col-md-6" for="search_client"><b>Nume complet:</label>
-                                        <input type="text" class="form-control" name="search_client" id="search_client" style="width: 250px;">
-                                        <label class="labels col-md-6" for="search_phone"><b>Nr. telefon:</label>
-                                        <input type="text" class="form-control" name="search_phone" id="search_phone" style="width: 250px;">
-                                    </p>
-                                    <br>
-                                    <input type="submit" name="SearchClient" value="Cauta" class="btn btn-primary profile-button">
-                                </form>
                             </div>
-                        </form>
+                            <h4 class="text-right">Update client</h4>
+                            <form method="post" autocomplete="off">
+                                <div class="form-outline mb-4">
+                                    <label for="username_client" class="labels col-md-6"><b>Current username:</b></label>
+                                    <input type="text" class="form-control" name="username_client" id="username_client" value="<?php echo $_SESSION['username'];?>" readonly>
+
+                                    <label for="username_client" class="labels col-md-6"><b>New username:</b></label>
+                                    <input type="text" name="username_client_nou" class="form-control<?php echo (!empty($usernameErr)) ? ' is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                                    <span class="invalid-feedback"><?php echo $usernameErr; ?></span>
+                                    <br/>
+                                    <input type="submit" name="UpdateUser" value="Update" class="btn btn-primary profile-button">
+                                    <br/>
+
+                                    <h4 class="text-right ">Adauga client</h4>
+                                    <label class="labels col-md-6" for="nume"><b>Nume:</label>
+                                    <input type="text" class="form-control <?php echo (!empty($nameErr)) ? ' is-invalid' : ''; ?>" name="create_client" id="create_client"/>
+                                    <span class="invalid-feedback"><?php echo $nameErr; ?></span>
+
+                                    <label class="labels col-md-6" for="nume"><b>Telefon:</label>
+                                    <input type="text" class="form-control <?php echo (!empty($phoneErr)) ? ' is-invalid' : ''; ?>" name="create_phone" id="create_phone"/>
+                                    <span class="invalid-feedback"><?php echo $phoneErr; ?></span>
+
+                                    <label class="labels col-md-6" for="nume"><b>Email:</label>
+                                    <input type="text" class="form-control <?php echo (!empty($emailErr)) ? ' is-invalid' : ''; ?>" name="create_email" id="create_email"/>
+                                    <span class="invalid-feedback"><?php echo $emailErr; ?></span>
+
+                                    <br/>
+                                    <input type="submit" name="CreateClient" value="Add" class="btn btn-primary profile-button">
+                                    <br/>
+
+                                    <h4 class="text-right">Cauta comanda</h4>
+                                    <form method="post" autocomplete="off">
+                                        <p>
+                                            <label class="labels col-md-6" for="search_client"><b>Nume complet:</label>
+                                            <input type="text" class="form-control <?php echo (!empty($complete_nameErr)) ? ' is-invalid' : ''; ?>" name="search_client" id="search_client" style="width: 250px;"/>
+                                            <span class="invalid-feedback"><?php echo $complete_nameErr; ?></span>
+
+                                            <label class="labels col-md-6" for="search_phone"><b>Nr. telefon:</label>
+                                            <input type="text" class="form-control <?php echo (!empty($phone_numberErr)) ? ' is-invalid' : ''; ?>" name="search_phone" id="search_phone" style="width: 250px;">
+                                            <span class="invalid-feedback"><?php echo $phone_numberErr; ?></span>
+
+                                        </p>
+                                        <br/>
+                                        <input type="submit" name="SearchClient" value="Cauta" class="btn btn-primary profile-button"/>
+                                        <br/><br/>
+                                        <a href="reset-password.php" class="btn btn-primary exit-button" style="position: relative; left:10px">Reset Your Password</a>
+                                        <a href="logout.php" class="btn btn-primary exit-button" style="position: relative; left:30px">Sign Out of Your Account</a>
+                                    </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </body>
 </html>
 

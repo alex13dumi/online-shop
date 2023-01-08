@@ -107,8 +107,8 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pagini <i class="fa fa-angle-down mt-1"></i></a>
                             <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                <a href="checkout.html" class="dropdown-item">Checkout</a>
+                                <a href="cart.html" class="dropdown-item">Cos cumparaturi</a>
+                                <a href="checkout.html" class="dropdown-item">Finalizare comanda</a>
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
@@ -136,9 +136,9 @@
     <div class="row px-xl-5">
         <div class="col-12">
             <nav class="breadcrumb bg-light mb-30">
-                <a class="breadcrumb-item text-dark" href="index.php">Home</a>
-                <a class="breadcrumb-item text-dark" href="shop.php">Shop</a>
-                <span class="breadcrumb-item active">Shop List</span>
+                <a class="breadcrumb-item text-dark" href="index.php">Acasa</a>
+                <a class="breadcrumb-item text-dark" href="shop.php">Magazin</a>
+                <span class="breadcrumb-item active">Lista cumparaturi</span>
             </nav>
         </div>
     </div>
@@ -243,15 +243,15 @@
                         </div>
                         <div class="ml-2">
                             <div class="btn-group">
-                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sortare</button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="#">Latest</a>
-                                    <a class="dropdown-item" href="#">Popularity</a>
-                                    <a class="dropdown-item" href="#">Best Rating</a>
+                                    <a class="dropdown-item" href="#">Cel mai nou</a>
+                                    <a class="dropdown-item" href="#">Cel mai popular</a>
+                                    <a class="dropdown-item" href="#">Cel mai cautat</a>
                                 </div>
                             </div>
                             <div class="btn-group ml-2">
-                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Showing</button>
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Afisare</button>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="#">10</a>
                                     <a class="dropdown-item" href="#">20</a>

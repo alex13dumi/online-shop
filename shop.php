@@ -50,9 +50,11 @@
             </a>
         </div>
         <div class="col-lg-4 col-6 text-left">
-            <form action="">
+            <form action="shop.php">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for products">
+                    <?php
+                    echo '<input type="text" class="form-control" name="productName" placeholder="Search for products">';
+                    ?>
                     <div class="input-group-append">
                             <span class="input-group-text bg-transparent text-primary">
                                 <i class="fa fa-search"></i>
@@ -287,17 +289,17 @@
 
                     $result = $mysqli->query($sql);
                     if (!$result->num_rows)
-                        echo 'Name or telephone doesn\'t exist';
-
+                    {
+                        echo '<h1 style="font-size: 30px"">No items in store with name: ' .$_GET['productName']. ' </h1>' ;
+                    }
                     else
                     {
-                        $i=0;
                         while ($obj = $result->fetch_object())
                         {
                             echo '<div class="col-lg-4 col-md-6 col-sm-6 pb-1">
                                         <div class="p-item bg-light mb-4">
                                             <div class="p-img position-relative overflow-hidden">
-                                                <img class="img-fluid w-100" src=\'' . $images[$i] . '\'" alt="">
+                                                <img class="img-fluid w-100" src=\'' . $images[$obj->idArticol-1] . '\'" alt="">
                                                 <div class="p-action">
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
                                                     <a class="btn btn-outline-dark btn-square" href=""><i class="far fa-heart"></i></a>
@@ -308,7 +310,7 @@
                                             <div class="text-center py-4">
                                                 <a class="h6 text-decoration-none text-truncate" href="detail.php?id='.$obj->idArticol.'">' .$obj->numeArticol. '</a>
                                                 <div class="d-flex align-items-center justify-content-center mt-2">
-                                                    <h5>' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
+                                                    <h5>$' .$obj->pretCurentArticol. '</h5><h6 class="text-muted ml-2"><del>'.'pret redus'.'</del></h6>
                                                 </div>
                                                 <div class="d-flex align-items-center justify-content-center mb-1">
                                                     <small class="fa fa-star text-primary mr-1"></small>
@@ -322,7 +324,6 @@
                                         </div>
                                     </div>
                                     ';
-                        $i++;
                         }
                     }
                 $result->close();

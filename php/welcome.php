@@ -1,153 +1,153 @@
 <?php
-    session_start();
-    require_once "config.php";
-    require "functions.php";
+session_start();
+require_once "config.php";
+require "functions.php";
 
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true)
+{
+    header("location: login.php");
+    exit;
+}
+
+$username = $name = $phone = $email = "";
+$usernameErr = $nameErr = $phoneErr = $emailErr = $complete_nameErr = $phone_numberErr = $generalErr = "";
+
+function UpdateUser()
+{
+    global $usernameErr;
+
+    if($_SERVER["REQUEST_METHOD"] != "POST")
+        return;
+
+    if (empty(trim($_POST['username_client_nou'])))
     {
-        header("location: login.php");
-        exit;
+        $usernameErr = "Please enter username.";
     }
-
-    $username = $name = $phone = $email = "";
-    $usernameErr = $nameErr = $phoneErr = $emailErr = $complete_nameErr = $phone_numberErr = $generalErr = "";
-
-    function UpdateUser()
+    else
     {
-        global $usernameErr;
-
-        if($_SERVER["REQUEST_METHOD"] != "POST")
-            return;
-
-        if (empty(trim($_POST['username_client_nou'])))
-        {
-            $usernameErr = "Please enter username.";
-        }
-        else
-        {
-            $username = trim($_POST['username_client_nou']);
-        }
-        if (empty($usernameErr))
-        {
-            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
-            $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-            $sql = 'UPDATE `users` SET `username`=\'' . $username . '\' WHERE id=' . $_SESSION["id"];
-            if ($stmt = $mysqli->prepare($sql))
-            {
-                if ($stmt->execute())
-                {
-                    session_destroy();
-                    header("location: login.php");
-                    exit();
-                }
-                else
-                {
-                    echo "Oops! Something went wrong. Please try again later.";
-                }
-                $stmt->close();
-            }
-            $mysqli->close();
-        }
+        $username = trim($_POST['username_client_nou']);
     }
-
-    function CreateClient()
+    if (empty($usernameErr))
     {
-        if($_SERVER["REQUEST_METHOD"] != "POST")
-            return;
-
-        global $name, $phone, $email;
-        global $generalErr, $nameErr, $phoneErr, $emailErr;
-
-        $name = FormatName($_POST['create_client']);
-        $email = trim($_POST['create_email']);
-        $phone = trim($_POST['create_phone']);
-        $coduser = $_SESSION["id"];
-
-        if (empty($name))
-        {
-            $nameErr = 'Field is empty !';
-        }
-        if(empty($phone))
-        {
-            $phoneErr = 'Field is empty !';
-        }
-        if(empty($email))
-        {
-            $emailErr = 'Field is empty !';
-        }
-        if (!preg_match("/^[a-zA-Z-' ]*$/", $name))
-        {
-            $nameErr = 'Only letters and white space allowed';
-        }
-        if (!preg_match("/^(?:(?:(?:00\s?|\+)40\s?|0)(?:7\d{2}\s?\d{3}\s?\d{3}|(21|31)\d{1}\s?\d{3}\s?\d{3}|((2|3)[3-7]\d{1})\s?\d{3}\s?\d{3}|(8|9)0\d{1}\s?\d{3}\s?\d{3}))$/", $phone))
-        {
-            $phoneErr = 'Only 10 digit numbers are allowed !';
-        }
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-        {
-            $emailErr = 'Invalid email format';
-        }
-        if(empty($nameErr) and empty($phoneErr) and empty($emailErr))
-        {
-            mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
-
-            $sql = 'INSERT INTO `tblClienti` (`numeClient`, `telefonClient`, `emailClient`, `codUser`) VALUES (?,?,?,?)';
-            $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
-
-            $stmt = $mysqli->prepare($sql);
-            $stmt->execute([$name, $phone, $email, $coduser]);
-
-            if (!$stmt->affected_rows)
-            {
-                $generalErr = 'Couldn\'t INSERT into `tblClienti`!';
-            }
-            $stmt->close();
-            $mysqli->close();
-        }
-    }
-
-    function SearchClient()
-    {
-        if($_SERVER["REQUEST_METHOD"] != "POST")
-            return;
-
-        global $generalErr, $complete_nameErr, $phone_numberErr;
-
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
-
-        $sql = 'SELECT `numeClient`, `telefonClient`, `emailClient`, `pretComanda`, `adresaComanda`, `statusComanda`, `dataPlasareComanda` FROM `tblClienti` JOIN `tblComenzi`' .
-            ' ON `codUser`=`codClient` WHERE `numeClient`=\'' . FormatName($_POST['search_client']) . '\' AND `telefonClient`=\'' . trim($_POST['search_phone']) . '\' AND `codUser`='.$_SESSION['id'].'';
-        $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
-
-        if(empty(FormatName($_POST['search_client'])))
+        $mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+        $sql = 'UPDATE `users` SET `username`=\'' . $username . '\' WHERE id=' . $_SESSION["id"];
+        if ($stmt = $mysqli->prepare($sql))
         {
-            $complete_nameErr = "Name is empty";
-        }
-        if(empty(FormatName($_POST['search_phone'])))
-        {
-            $phone_numberErr = "Phone is empty";
-        }
-        if (!preg_match("/^[a-zA-Z-' ]*$/", FormatName($_POST['search_client'])))
-        {
-            $complete_nameErr = 'Only letters and white space allowed';
-        }
-        if (!preg_match("/^(?:(?:(?:00\s?|\+)40\s?|0)(?:7\d{2}\s?\d{3}\s?\d{3}|(21|31)\d{1}\s?\d{3}\s?\d{3}|((2|3)[3-7]\d{1})\s?\d{3}\s?\d{3}|(8|9)0\d{1}\s?\d{3}\s?\d{3}))$/", trim($_POST['search_phone'])))
-        {
-            $phone_numberErr = 'Only 10 digit numbers are allowed !';
-        }
-        if(empty($complete_nameErr) and empty($complete_phoneErr) and empty($generalErr))
-        {
-            $result = $mysqli->query($sql);
-
-            if (!$result->num_rows)
-                $generalErr = 'Name or telephone doesn\'t exist or order doesn\'t belong to you !';
-
+            if ($stmt->execute())
+            {
+                session_destroy();
+                header("location: login.php");
+                exit();
+            }
             else
             {
-                $i=0;
-                while ($obj = $result->fetch_object())
-                {
-                    echo'<table class="table table-dark">
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+            $stmt->close();
+        }
+        $mysqli->close();
+    }
+}
+
+function CreateClient()
+{
+    if($_SERVER["REQUEST_METHOD"] != "POST")
+        return;
+
+    global $name, $phone, $email;
+    global $generalErr, $nameErr, $phoneErr, $emailErr;
+
+    $name = FormatName($_POST['create_client']);
+    $email = trim($_POST['create_email']);
+    $phone = trim($_POST['create_phone']);
+    $coduser = $_SESSION["id"];
+
+    if (empty($name))
+    {
+        $nameErr = 'Field is empty !';
+    }
+    if(empty($phone))
+    {
+        $phoneErr = 'Field is empty !';
+    }
+    if(empty($email))
+    {
+        $emailErr = 'Field is empty !';
+    }
+    if (!preg_match("/^[a-zA-Z-' ]*$/", $name))
+    {
+        $nameErr = 'Only letters and white space allowed';
+    }
+    if (!preg_match("/^(?:(?:(?:00\s?|\+)40\s?|0)(?:7\d{2}\s?\d{3}\s?\d{3}|(21|31)\d{1}\s?\d{3}\s?\d{3}|((2|3)[3-7]\d{1})\s?\d{3}\s?\d{3}|(8|9)0\d{1}\s?\d{3}\s?\d{3}))$/", $phone))
+    {
+        $phoneErr = 'Only 10 digit numbers are allowed !';
+    }
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+    {
+        $emailErr = 'Invalid email format';
+    }
+    if(empty($nameErr) and empty($phoneErr) and empty($emailErr))
+    {
+        mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
+
+        $sql = 'INSERT INTO `tblClienti` (`numeClient`, `telefonClient`, `emailClient`, `codUser`) VALUES (?,?,?,?)';
+        $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
+
+        $stmt = $mysqli->prepare($sql);
+        $stmt->execute([$name, $phone, $email, $coduser]);
+
+        if (!$stmt->affected_rows)
+        {
+            $generalErr = 'Couldn\'t INSERT into `tblClienti`!';
+        }
+        $stmt->close();
+        $mysqli->close();
+    }
+}
+
+function SearchClient()
+{
+    if($_SERVER["REQUEST_METHOD"] != "POST")
+        return;
+
+    global $generalErr, $complete_nameErr, $phone_numberErr;
+
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Predefined Constants MySQLi
+
+    $sql = 'SELECT `numeClient`, `telefonClient`, `emailClient`, `pretComanda`, `adresaComanda`, `statusComanda`, `dataPlasareComanda` FROM `tblClienti` JOIN `tblComenzi`' .
+        ' ON `codUser`=`codClient` WHERE `numeClient`=\'' . FormatName($_POST['search_client']) . '\' AND `telefonClient`=\'' . trim($_POST['search_phone']) . '\' AND `codUser`='.$_SESSION['id'].'';
+    $mysqli = new mysqli('localhost', 'alex13dumi', 'steaua86.', 'magArtSportiveDB'); //OOP Style
+
+    if(empty(FormatName($_POST['search_client'])))
+    {
+        $complete_nameErr = "Name is empty";
+    }
+    if(empty(FormatName($_POST['search_phone'])))
+    {
+        $phone_numberErr = "Phone is empty";
+    }
+    if (!preg_match("/^[a-zA-Z-' ]*$/", FormatName($_POST['search_client'])))
+    {
+        $complete_nameErr = 'Only letters and white space allowed';
+    }
+    if (!preg_match("/^(?:(?:(?:00\s?|\+)40\s?|0)(?:7\d{2}\s?\d{3}\s?\d{3}|(21|31)\d{1}\s?\d{3}\s?\d{3}|((2|3)[3-7]\d{1})\s?\d{3}\s?\d{3}|(8|9)0\d{1}\s?\d{3}\s?\d{3}))$/", trim($_POST['search_phone'])))
+    {
+        $phone_numberErr = 'Only 10 digit numbers are allowed !';
+    }
+    if(empty($complete_nameErr) and empty($complete_phoneErr) and empty($generalErr))
+    {
+        $result = $mysqli->query($sql);
+
+        if (!$result->num_rows)
+            $generalErr = 'Name or telephone doesn\'t exist or order doesn\'t belong to you !';
+
+        else
+        {
+            $i=0;
+            while ($obj = $result->fetch_object())
+            {
+                echo'<table class="table table-dark">
                                       <thead class="thead-dark">
                                         <tr>
                                           <th scope="col">#</th>
@@ -161,7 +161,7 @@
                                         </tr>
                                       </thead>
                                 ';
-                    echo'
+                echo'
                                       <tbody>
                                         <tr>
                                           <th scope="row">' .$i. '</th>
@@ -176,23 +176,23 @@
                                      </tbody>
                                     </table>
                                 ';
-                    $i++;
-                }
+                $i++;
             }
-            $result->close();
-            $mysqli->close();
         }
+        $result->close();
+        $mysqli->close();
     }
+}
 
-    if(isset($_POST['CreateClient'])){
-        CreateClient();
-    }
-    if(isset($_POST['UpdateUser'])){
-        UpdateUser();
-    }
-    if(isset($_POST['SearchClient'])){
-        SearchClient();
-    }
+if(isset($_POST['CreateClient'])){
+    CreateClient();
+}
+if(isset($_POST['UpdateUser'])){
+    UpdateUser();
+}
+if(isset($_POST['SearchClient'])){
+    SearchClient();
+}
 ?>
 
 <!DOCTYPE html>

@@ -1,94 +1,95 @@
- <?php
-    session_start();
+<?php
+session_start();
 
-    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true)
+{
+    header("location: ../index.php");
+    exit;
+}
+
+require_once "config.php";
+
+$mysqli = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+if($mysqli === false)
+{
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+$username = $password = $created_at = "";
+$usernameErr = $passwordErr = $loginErr = "";
+
+if($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    if(empty(trim($_POST["username"])))
     {
-        header("location: ../index.php");
-        exit;
+        $usernameErr = "Please enter username.";
+    }
+    else
+    {
+        $username = trim($_POST["username"]);
     }
 
-    require_once "config.php";
-
-    $mysqli = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-    if($mysqli === false)
+    if(empty(trim($_POST["password"])))
     {
-        die("ERROR: Could not connect. " . mysqli_connect_error());
+        $passwordErr = "Please enter your password.";
+    }
+    else
+    {
+        $password = trim($_POST["password"]);
     }
 
-    $username = $password = "";
-    $usernameErr = $passwordErr = $loginErr = "";
-
-    if($_SERVER["REQUEST_METHOD"] == "POST")
+    if(empty($usernameErr) && empty($passwordErr))
     {
-        if(empty(trim($_POST["username"])))
-        {
-            $usernameErr = "Please enter username.";
-        }
-        else
-        {
-            $username = trim($_POST["username"]);
-        }
+        $sql = "SELECT id, username, password, created_at FROM users WHERE username = ?";
 
-        if(empty(trim($_POST["password"])))
+        if($stmt = $mysqli->prepare($sql))
         {
-            $passwordErr = "Please enter your password.";
-        }
-        else
-        {
-            $password = trim($_POST["password"]);
-        }
+            $stmt->bind_param("s", $param_username);
+            $param_username = $username;
 
-        if(empty($usernameErr) && empty($passwordErr))
-        {
-            $sql = "SELECT id, username, password FROM users WHERE username = ?";
-
-            if($stmt = $mysqli->prepare($sql))
+            if($stmt->execute())
             {
-                $stmt->bind_param("s", $param_username);
-                $param_username = $username;
+                $stmt->store_result();
 
-                if($stmt->execute())
+                if($stmt->num_rows == 1)
                 {
-                    $stmt->store_result();
-
-                    if($stmt->num_rows == 1)
+                    $stmt->bind_result($id, $username, $hashed_password, $created_at);
+                    if($stmt->fetch())
                     {
-                        $stmt->bind_result($id, $username, $hashed_password);
-                        if($stmt->fetch())
+                        if(password_verify($password, $hashed_password))
                         {
-                            if(password_verify($password, $hashed_password))
-                            {
-                                session_start();
+                            session_start();
 
-                                $_SESSION["loggedin"] = true;
-                                $_SESSION["id"] = $id;
-                                $_SESSION["username"] = $username;
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["username"] = $username;
+                            $_SESSION["created_at"] = $created_at;
 
-                                $sql="UPDATE `users` SET `client_code`='.$id.' WHERE `username`='.$username.'";
-                                $result = $mysqli->query($sql);
-                                header("location: ../index.php");
-                            }
-                            else
-                            {
-                                $loginErr = "Invalid username or password.";
-                            }
+                            $sql="UPDATE `users` SET `client_code`='.$id.' WHERE `username`='.$username.'";
+                            $result = $mysqli->query($sql);
+                            header("location: ../index.php");
                         }
-                    }
-                    else
-                    {
-                        $loginErr = "Invalid username or password.";
+                        else
+                        {
+                            $loginErr = "Invalid username or password.";
+                        }
                     }
                 }
                 else
                 {
-                    echo "Oops! Something went wrong. Please try again later.";
+                    $loginErr = "Invalid username or password.";
                 }
-                $stmt->close();
             }
+            else
+            {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+            $stmt->close();
         }
-        $mysqli->close();
     }
+    $mysqli->close();
+}
 ?>
 
 <!DOCTYPE html>
